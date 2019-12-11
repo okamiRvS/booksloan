@@ -4,40 +4,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- 
+
 @Entity
 public class Book {
-    private Long isbn;
-    private String name;
-    private String author;
- 
+    private int id;
+    private String titolo;
+    private String anno;
+
     public Book() {
     }
- 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getIsbn() {
-        return isbn;
+    public int getId() {
+        return id;
     }
-    
-	public void setIsbn(Long isbn) {
-		this.isbn = isbn;
-	}
-	
-	public String getName() {
-		return name;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getTitolo() {
+		return titolo;
 	}
 
-	public String getAuthor() {
-		return author;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public String getAnno() {
+		return anno;
 	}
-	
+
+	public void setAnno(String anno) {
+		this.anno = anno;
+	}
+
 }
