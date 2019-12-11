@@ -26,8 +26,8 @@ DROP TABLE IF EXISTS `autore`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `autore` (
   `id_autore` int(11) NOT NULL,
-  `nome` varchar(45) DEFAULT NULL,
-  `cognome` varchar(45) DEFAULT NULL,
+  `nome` text,
+  `cognome` text,
   PRIMARY KEY (`id_autore`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,6 +38,7 @@ CREATE TABLE `autore` (
 
 LOCK TABLES `autore` WRITE;
 /*!40000 ALTER TABLE `autore` DISABLE KEYS */;
+INSERT INTO `autore` VALUES (1,'Andrea','Camilleri'),(2,'Elena','Ferrante'),(3,'J.R.R','Tolkien'),(4,'J.K','Rowling'),(5,'Jane','Austen'),(6,'Donna','Tartt'),(7,'Douglas','Adams');
 /*!40000 ALTER TABLE `autore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,11 +50,12 @@ DROP TABLE IF EXISTS `copia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `copia` (
-  `isbn` int(11) NOT NULL,
+  `isbn` bigint(20) NOT NULL,
   `id` int(11) DEFAULT NULL,
-  `disponibilita` tinyint(4) DEFAULT NULL,
+  `disponibilita` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`isbn`),
-  CONSTRAINT `isbn` FOREIGN KEY (`isbn`) REFERENCES `prestito` (`isbn`)
+  KEY `fk_copia_libro1_idx` (`id`),
+  CONSTRAINT `fk_copia_libro1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,7 +77,7 @@ DROP TABLE IF EXISTS `libro`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `libro` (
   `id` int(11) NOT NULL,
-  `titolo` varchar(45) DEFAULT NULL,
+  `titolo` text,
   `anno` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -87,6 +89,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
+INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1980),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,9 +104,11 @@ CREATE TABLE `prestito` (
   `data_inizio` date DEFAULT NULL,
   `data_consegna` date DEFAULT NULL,
   `n_tessera` int(11) NOT NULL,
-  `isbn` int(11) NOT NULL,
-  PRIMARY KEY (`isbn`,`n_tessera`),
+  `isbn` bigint(20) NOT NULL,
+  PRIMARY KEY (`n_tessera`,`isbn`),
   KEY `n_tessera_idx` (`n_tessera`),
+  KEY `fk_prestito_copia1_idx` (`isbn`),
+  CONSTRAINT `fk_prestito_copia1` FOREIGN KEY (`isbn`) REFERENCES `copia` (`isbn`),
   CONSTRAINT `n_tessera` FOREIGN KEY (`n_tessera`) REFERENCES `utente` (`n_tessera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -126,7 +131,7 @@ DROP TABLE IF EXISTS `scritto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scritto` (
   `id` int(11) NOT NULL,
-  `id_autore` int(11) DEFAULT NULL,
+  `id_autore` int(11) NOT NULL,
   KEY `id_idx` (`id`),
   KEY `id_autore_idx` (`id_autore`),
   CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `libro` (`id`),
@@ -144,6 +149,33 @@ LOCK TABLES `scritto` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sequel`
+--
+
+DROP TABLE IF EXISTS `sequel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sequel` (
+  `id_1` int(11) NOT NULL,
+  `id_2` int(11) NOT NULL,
+  PRIMARY KEY (`id_1`,`id_2`),
+  KEY `fk_libro_has_libro_libro2_idx` (`id_2`),
+  KEY `fk_libro_has_libro_libro1_idx` (`id_1`),
+  CONSTRAINT `fk_libro_has_libro_libro1` FOREIGN KEY (`id_1`) REFERENCES `libro` (`id`),
+  CONSTRAINT `fk_libro_has_libro_libro2` FOREIGN KEY (`id_2`) REFERENCES `libro` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sequel`
+--
+
+LOCK TABLES `sequel` WRITE;
+/*!40000 ALTER TABLE `sequel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sequel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `utente`
 --
 
@@ -152,9 +184,9 @@ DROP TABLE IF EXISTS `utente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utente` (
   `n_tessera` int(11) NOT NULL,
-  `nome` varchar(45) DEFAULT NULL,
-  `cognome` varchar(45) DEFAULT NULL,
-  `e_mail` varchar(45) DEFAULT NULL,
+  `nome` text,
+  `cognome` text,
+  `e_mail` text,
   PRIMARY KEY (`n_tessera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -177,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-11 10:41:07
+-- Dump completed on 2019-12-11 17:29:30
