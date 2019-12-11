@@ -6,12 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Book {
+public class Libro {
     private int id;
     private String titolo;
     private String anno;
 
-    public Book() {
+    public Libro() {
     }
 
     @Id

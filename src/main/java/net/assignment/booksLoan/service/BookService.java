@@ -6,29 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.assignment.booksLoan.model.Book;
+import net.assignment.booksLoan.model.Libro;
 import net.assignment.booksLoan.repository.BookRepository;
- 
+
 @Service
 @Transactional
 public class BookService {
- 
+
     @Autowired
     private BookRepository repo;
-     
-    public List<Book> listAll() {
+
+    public List<Libro> listAll() {
         return repo.findAll();
     }
-     
-    public void save(Book product) {
+
+    public void save(Libro product) {
         repo.save(product);
     }
-     
-    public Book get(long isbn) {
-        return repo.findById(isbn).get();
+
+    public Libro get(int id) {
+        return repo.findById(id).get();
     }
-     
-    public void delete(long isbn) {
-        repo.deleteById(isbn);
+
+    public void delete(int id) {
+        repo.deleteById(id);
     }
 }
