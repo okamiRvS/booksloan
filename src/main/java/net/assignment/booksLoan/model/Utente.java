@@ -9,17 +9,26 @@ import javax.persistence.Id;
 @Entity
 public class Utente {
 
+    @Id
+    @Column(name = "n_tessera")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int n_tessera;
-    private String nome;
+    
+    @Column
+    private String password;
+    
+    @Column
+    private String username;
+    
+    @Column
     private String cognome;
+    
+    @Column
     private String e_mail;
 
     public Utente() {
     }
 
-    @Id
-    @Column(name = "n_tessera")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getN_tessera() {
         return n_tessera;
     }
@@ -28,12 +37,20 @@ public class Utente {
         this.n_tessera = n_tessera;
     }
 
-    public String getNome() {
-        return nome;
+    public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCognome() {
@@ -51,4 +68,11 @@ public class Utente {
     public void setE_mail(String e_mail) {
         this.e_mail = e_mail;
     }
+
+	@Override
+	public String toString() {
+		return "Utente [n_tessera=" + n_tessera + ", password=" + password + ", username=" + username + ", cognome="
+				+ cognome + ", e_mail=" + e_mail + "]";
+	}
+    
 }

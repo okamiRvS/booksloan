@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +13,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.model.Utente;
 import net.assignment.booksLoan.service.BookService;
-import net.assignment.booksLoan.service.UserService;
 
 @Controller
 public class AppController {
 	@Autowired
 	private BookService bookService;
-	@Autowired
-	private UserService userService;
-
-
-	@RequestMapping("/")
-	public String viewHomePage(Model model) {
+    
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@GetMapping("/user")
+	public String user() {
+		return "user";
+	}
+	
+	@GetMapping("/admin")
+	public String admin() {
+		return "admin";
+	}	
+	
+	@RequestMapping(value={"", "/", "/index"})
+	public String index(Model model) {
 		List<Libro> listBooks = bookService.listAll();
 		model.addAttribute("listBooks", listBooks);
 
@@ -46,17 +57,7 @@ public class AppController {
 
 	    return "redirect:/";
 	}
-	
-	
-	@RequestMapping(value = "/accedi", method = RequestMethod.POST)
-	public String checkUser(@ModelAttribute("book") Utente user) {
-	    Utente a = userService.accedi(user.getN_tessera());
-	    System.out.println(a.getCognome());
-
-	    return "redirect:/";
-	}
-	
-	
+		
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 	    ModelAndView mav = new ModelAndView("edit_book");
