@@ -1,5 +1,9 @@
 package net.assignment.booksLoan.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Scritto {
 
     private int id;
@@ -9,6 +13,7 @@ public class Scritto {
 
     }
 
+    @Id
     public int getId() {
         return id;
     }

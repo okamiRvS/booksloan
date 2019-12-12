@@ -12,16 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Libro;
+import net.assignment.booksLoan.model.Utente;
 import net.assignment.booksLoan.service.BookService;
+import net.assignment.booksLoan.service.UserService;
 
 @Controller
 public class AppController {
 	@Autowired
-	private BookService service;
+	private BookService bookService;
+	@Autowired
+	private UserService userService;
+
 
 	@RequestMapping("/")
 	public String viewHomePage(Model model) {
-		List<Libro> listBooks = service.listAll();
+		List<Libro> listBooks = bookService.listAll();
 		model.addAttribute("listBooks", listBooks);
 
 		return "index";
@@ -37,15 +42,25 @@ public class AppController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("book") Libro book) {
-	    service.save(book);
+	    bookService.save(book);
 
 	    return "redirect:/";
 	}
+	
+	
+	@RequestMapping(value = "/accedi", method = RequestMethod.POST)
+	public String checkUser(@ModelAttribute("book") Utente user) {
+	    Utente a = userService.accedi(user.getN_tessera());
+	    System.out.println(a.getCognome());
 
+	    return "redirect:/";
+	}
+	
+	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 	    ModelAndView mav = new ModelAndView("edit_book");
-	    Libro book = service.get(id);
+	    Libro book = bookService.get(id);
 	    mav.addObject("book", book);
 
 	    return mav;
@@ -53,8 +68,13 @@ public class AppController {
 
 	@RequestMapping("/delete/{id}")
 	public String deleteProducte(@PathVariable(name = "id") int id) {
-		service.delete(id);
+		bookService.delete(id);
 
 	    return "redirect:/";
+	}
+	
+	@RequestMapping("/ind2")
+	public String showBoot(Model model) {
+	    return "ind2";
 	}
 }

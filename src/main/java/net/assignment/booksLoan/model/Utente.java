@@ -1,9 +1,12 @@
 package net.assignment.booksLoan.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Utente {
 
     private int n_tessera;
@@ -15,6 +18,7 @@ public class Utente {
     }
 
     @Id
+    @Column(name = "n_tessera")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getN_tessera() {
         return n_tessera;

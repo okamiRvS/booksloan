@@ -1,5 +1,9 @@
 package net.assignment.booksLoan.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Sequel {
 
     private int id_1;
@@ -9,6 +13,7 @@ public class Sequel {
 
     }
 
+    @Id
     public int getId_1() {
         return id_1;
     }
@@ -17,6 +22,7 @@ public class Sequel {
         this.id_1 = id_1;
     }
 
+    //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/composite-primary-key.html
     public int getId_2() {
         return id_2;
     }

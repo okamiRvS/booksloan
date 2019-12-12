@@ -1,5 +1,9 @@
 package net.assignment.booksLoan.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Prestito {
 
     private String data_inizio;
@@ -11,6 +15,7 @@ public class Prestito {
 
     }
 
+    @Id
     public String getData_inizio() {
         return data_inizio;
     }
@@ -19,6 +24,7 @@ public class Prestito {
         this.data_inizio = data_inizio;
     }
 
+    // https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/composite-primary-key.html
     public String getData_consegna() {
         return data_consegna;
     }
