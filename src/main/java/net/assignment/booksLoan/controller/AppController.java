@@ -21,7 +21,7 @@ import net.assignment.booksLoan.service.CopieService;
 public class AppController {
 	@Autowired
 	private BookService bookService;
-
+	@Autowired
     private CopieService copieService;
 
 	@GetMapping("/login")
