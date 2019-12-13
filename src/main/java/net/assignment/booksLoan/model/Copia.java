@@ -10,7 +10,7 @@ public class Copia {
 
     private Long isbn;
     private int id;
-    private boolean disponibilità;
+    private boolean disponibilita;
 
     public Copia() {
     }
@@ -33,12 +33,12 @@ public class Copia {
         this.id = id;
     }
 
-    public boolean getDisponibilità() {
-        return disponibilità;
+    public boolean getDisponibilita() {
+        return disponibilita;
     }
 
-    public void setDisponibilità(boolean disponibilità) {
-        this.disponibilità = disponibilità;
+    public void setDisponibilita(boolean disponibilita) {
+        this.disponibilita = disponibilita;
     }
-    
+
 }

@@ -3,12 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<title>Gestore Libri</title>
+<title>Libri</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Book List</h1>
-		<a href="/new">Crea Nuovo Libro</a> <br />
+		<h1>Lista libri</h1>
 		<br />
 		<table border="1" cellpadding="10">
 			<thead>
@@ -25,8 +24,8 @@
 					<td th:text="${book.titolo}">Name</td>
 					<td th:text="${book.anno}">Name</td>
 
-					<td><a th:href="@{'/edit/' + ${book.id}}">Edit</a>
-						&nbsp;&nbsp;&nbsp; <a th:href="@{'/delete/' + ${book.id}}">Delete</a>
+					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a>
+					
 					</td>
 
 				</tr>
