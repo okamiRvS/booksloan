@@ -87,6 +87,8 @@ public class AppController {
     public String showProductCopies(Model model, @PathVariable(name = "id") int id) {
         List<Copia> listCopie = copieService.CopieId(id);
         model.addAttribute("listCopie", listCopie);
+        String book = copieService.TitoloId(id);
+        model.addAttribute("book", book);
 
         return "copie";
 

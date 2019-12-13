@@ -20,6 +20,10 @@ public class CopieService {
         return repo.findCopieById(id);
     }
 
+    public String TitoloId(int id){
+        return repo.findTitoloById(id);
+    }
+
     public void prenota(Copia copia) {
         repo.save(copia);
     }
