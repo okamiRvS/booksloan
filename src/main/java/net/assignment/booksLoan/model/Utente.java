@@ -21,9 +21,6 @@ public class Utente {
     private String username;
     
     @Column
-    private String cognome;
-    
-    @Column
     private String e_mail;
 
     public Utente() {
@@ -53,14 +50,6 @@ public class Utente {
         this.username = username;
     }
 
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
     public String getE_mail() {
         return e_mail;
     }
@@ -69,10 +58,4 @@ public class Utente {
         this.e_mail = e_mail;
     }
 
-	@Override
-	public String toString() {
-		return "Utente [n_tessera=" + n_tessera + ", password=" + password + ", username=" + username + ", cognome="
-				+ cognome + ", e_mail=" + e_mail + "]";
-	}
-    
 }

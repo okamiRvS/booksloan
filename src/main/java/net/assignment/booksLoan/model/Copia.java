@@ -40,4 +40,5 @@ public class Copia {
     public void setDisponibilità(boolean disponibilità) {
         this.disponibilità = disponibilità;
     }
+    
 }
