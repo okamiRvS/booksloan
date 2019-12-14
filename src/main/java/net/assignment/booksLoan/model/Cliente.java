@@ -1,14 +1,10 @@
 package net.assignment.booksLoan.model;
 
-import javax.persistence.Column;
-
 public class Cliente extends Utente{
 	
-	@Column
+	
 	private String nome;
-	@Column
     private String cognome;
-	@Column
 	private String residenza;
 	
 	public String getNome() {

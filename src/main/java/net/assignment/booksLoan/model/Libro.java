@@ -1,21 +1,33 @@
 package net.assignment.booksLoan.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="libro", schema="booksloan")
 public class Libro {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String titolo;
     private String anno;
+    
+    
+    @ManyToMany(mappedBy = "libri")
+    private Set<Autore> autori = new HashSet<>();
 
     public Libro() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -39,5 +51,6 @@ public class Libro {
 	public void setAnno(String anno) {
 		this.anno = anno;
 	}
-
+	
+	
 }
