@@ -93,5 +93,13 @@ public class AppController {
         return "copie";
 
     }
+	
+	@RequestMapping("/prenota/{isbn}")
+    public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
+        copieService.prenota(isbn);
+        
+        return "copie";
+
+    }
 
 }

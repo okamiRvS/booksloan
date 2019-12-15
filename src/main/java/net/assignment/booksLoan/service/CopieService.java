@@ -24,12 +24,19 @@ public class CopieService {
         return repo.findTitoloById(id);
     }
 
+    /*
     public void prenota(Copia copia) {
         repo.save(copia);
+    }
+    */
+    
+    public void prenota(Long isbn) {
+        repo.setCopiaPrenotata(isbn);
     }
 
     public Copia get(int id) {
         return repo.findById(id).get();
     }
 
+    
 }
