@@ -37,3 +37,4 @@ build/
 *.aux
 *.txt
 *.gz
+*.log
