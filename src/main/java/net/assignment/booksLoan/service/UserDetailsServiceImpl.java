@@ -27,8 +27,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		
 		// Creiamo l'oggetto UserDetails che sarà in sessione e lo restituiamo
-		return new org.springframework.security.core.userdetails.User(user.getUsername(),
-				user.getPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
+		return new org.springframework.security.core.userdetails.User(
+				user.getUsername(),
+				user.getPassword(), 
+				Collections.singleton(
+						new SimpleGrantedAuthority(user.getRuolo())));
 	}
 
 }

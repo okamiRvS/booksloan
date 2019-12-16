@@ -25,6 +25,9 @@ public class Utente {
     @Column
     private String e_mail;
 
+    @Column
+    private String ruolo;
+    
     public Utente() {
     }
 
@@ -59,5 +62,13 @@ public class Utente {
     public void setE_mail(String e_mail) {
         this.e_mail = e_mail;
     }
+
+	public String getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
 
 }

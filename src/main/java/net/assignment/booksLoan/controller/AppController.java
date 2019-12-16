@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.repository.UserRepository;
 import net.assignment.booksLoan.service.BookService;
 import net.assignment.booksLoan.service.CopieService;
 
@@ -26,30 +24,26 @@ public class AppController {
 	private BookService bookService;
 	@Autowired
     private CopieService copieService;
-	@Autowired
-    private UserRepository userRepository;
-
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 
-	@GetMapping("/user")
-	public String user() {
-		return "user";
-	}
-
-	@GetMapping("/admin")
-	public String admin() {
-		return "admin";
-	}
-
 	@RequestMapping(value={"", "/", "/index"})
 	public String index(Model model) {
+		// Get ruolo dell'utente in sessione		
+		String ruolo = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        
 		List<Libro> listBooks = bookService.listAll();
 		model.addAttribute("listBooks", listBooks);
-
-		return "indexUtente";
+		
+		System.out.println(ruolo.equalsIgnoreCase("[ROLE_ADMIN]"));
+		if(ruolo.equalsIgnoreCase("[ROLE_ADMIN]")) {
+			return "indexAdmin";
+		} else {
+			return "indexUtente";
+		}
 	}
 
 	@RequestMapping("/new")
@@ -103,7 +97,6 @@ public class AppController {
     public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
         copieService.prenota(isbn);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println("Stocco");
         int n_tessera = copieService.getN_tessera(username);
         System.out.println("Ital");
         copieService.setUtentePrestito(n_tessera, isbn);
