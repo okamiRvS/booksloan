@@ -1,8 +1,6 @@
 package net.assignment.booksLoan.service;
 
 import java.util.Collections;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,15 +20,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String n_tessera) throws UsernameNotFoundException {
 		// Cerca l'utente con il repository e, se non esiste, avvia un'eccezione
-		Optional<Utente> user = userRepository.findUserByN_tessera(n_tessera);
+		Utente user = userRepository.findUserByN_tessera(n_tessera);
 
-		if (user.get() == null) {
+		if (user == null) {
 			throw new UsernameNotFoundException("Username not found");
 		}
-
+		
 		// Creiamo l'oggetto UserDetails che sarà in sessione e lo restituiamo
-		return new org.springframework.security.core.userdetails.User(user.get().getUsername(),
-				user.get().getPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(),
+				user.getPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
 	}
 
 }

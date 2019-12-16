@@ -3,6 +3,8 @@ package net.assignment.booksLoan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
+import net.assignment.booksLoan.repository.UserRepository;
 import net.assignment.booksLoan.service.BookService;
 import net.assignment.booksLoan.service.CopieService;
 
@@ -23,6 +26,8 @@ public class AppController {
 	private BookService bookService;
 	@Autowired
     private CopieService copieService;
+	@Autowired
+    private UserRepository userRepository;
 
 	@GetMapping("/login")
 	public String login() {
@@ -97,8 +102,13 @@ public class AppController {
 	@RequestMapping("/prenota/{isbn}")
     public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
         copieService.prenota(isbn);
-        
-        return "copie";
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println("Stocco");
+        int n_tessera = copieService.getN_tessera(username);
+        System.out.println("Ital");
+        copieService.setUtentePrestito(n_tessera, isbn);
+        model.addAttribute("username", username);
+        return "prenota";
 
     }
 
