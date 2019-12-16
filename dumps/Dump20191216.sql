@@ -65,7 +65,7 @@ CREATE TABLE `copia` (
 
 LOCK TABLES `copia` WRITE;
 /*!40000 ALTER TABLE `copia` DISABLE KEYS */;
-INSERT INTO `copia` VALUES (123,101,1),(222,102,1),(333,106,1),(335,101,1),(353,103,1),(456,109,1),(789,101,1);
+INSERT INTO `copia` VALUES (123,101,0),(222,102,1),(333,106,1),(335,101,1),(353,103,1),(456,109,1),(789,101,1);
 /*!40000 ALTER TABLE `copia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,6 +120,7 @@ CREATE TABLE `prestito` (
 
 LOCK TABLES `prestito` WRITE;
 /*!40000 ALTER TABLE `prestito` DISABLE KEYS */;
+INSERT INTO `prestito` VALUES ('2019-12-16 15:46:03',NULL,123,123);
 /*!40000 ALTER TABLE `prestito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,6 +191,7 @@ CREATE TABLE `utente` (
   `nome` text,
   `cognome` text,
   `e_mail` text,
+  `ruolo` text NOT NULL,
   PRIMARY KEY (`n_tessera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -200,7 +202,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (123,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','umbe95','Umberto','Cocca',NULL),(321,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','Pino74','Pino','Fumagalli',NULL);
+INSERT INTO `utente` VALUES (123,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','umbe95','Umberto','Cocca',NULL,'ROLE_ADMIN'),(321,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','Pino74','Pino','Fumagalli',NULL,'ROLE_USER');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -213,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-16 13:28:54
+-- Dump completed on 2019-12-16 17:44:06
