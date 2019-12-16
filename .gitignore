@@ -3,9 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-application.properties
 
-### STS ###
+# STS #
+######################
 .apt_generated
 .classpath
 .factorypath
@@ -14,13 +14,15 @@ application.properties
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
+# IntelliJ IDEA #
+######################
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# NetBeans #
+######################
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -28,13 +30,36 @@ application.properties
 /.nb-gradle/
 build/
 
-### VS Code ###
+# VS Code #
+######################
 .vscode/
 /bin/
 
-### Latex ###
+# Latex #
+######################
 *.out
 *.aux
 *.txt
 *.gz
 *.log
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+
