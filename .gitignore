@@ -24,11 +24,6 @@ bin/
 /.nb-gradle/
 build/
 
-# VS Code #
-######################
-.vscode/
-/bin/
-
 # Latex #
 ######################
 *.out
