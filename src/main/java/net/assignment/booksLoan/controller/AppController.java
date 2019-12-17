@@ -46,26 +46,18 @@ public class AppController {
 		}
 	}
 
-	@RequestMapping("/new")
-	public String showNewProductPage(Model model) {
-	    Libro book = new Libro();
-	    model.addAttribute("book", book);
-
-	    return "new_book";
-	}
-
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("book") Libro book) {
 	    bookService.save(book);
 	    return "redirect:/";
 	}
 
+
 	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {		
 	    ModelAndView mav = new ModelAndView("edit_book");
 	    Libro book = bookService.get(id);
 	    mav.addObject("book", book);
-
 	    return mav;
 	}
 	
