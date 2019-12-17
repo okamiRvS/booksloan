@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
+import net.assignment.booksLoan.model.Prestito;
 import net.assignment.booksLoan.service.CopieService;
 import net.assignment.booksLoan.service.LibroService;
+import net.assignment.booksLoan.service.PrestitoService;
 
 @Controller
 public class AppController {
@@ -24,6 +26,8 @@ public class AppController {
 	private LibroService bookService;
 	@Autowired
     private CopieService copieService;
+	@Autowired
+    private PrestitoService prestitoService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -106,10 +110,16 @@ public class AppController {
 
 	@RequestMapping("/prenotazioni/")
     public String prenotazioni(Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		/*
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int n_tessera = copieService.getN_tessera(username);
         copieService.ElencoPrestiti(n_tessera);
         return "prenotazioni";
-
+		 */
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+		List<Prestito> prenotazioni = prestitoService.ElencoPrestiti(n_tessera);
+		model.addAttribute("prenotazioni", prenotazioni);
+        return "prenotazioni";
     }
 }

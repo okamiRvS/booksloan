@@ -31,6 +31,4 @@ public interface CopiaRepository extends JpaRepository<Copia, Integer> {
 	@Query(value = "SELECT u.n_tessera FROM Utente u WHERE u.username = ?1", nativeQuery = true)
 	public int getN_tessera(String username);
 
-	@Query (value = "SELECT isbn, n_tessera, DATE_FORMAT(p.data_inizio, '%d %m %Y') AS data_inizio, DATE_FORMAT(p.data_consegna, '%d %m %Y') AS data_consegna FROM Prestito p WHERE p.n_tessera = ?1", nativeQuery = true)
-    public List<Prestito> prenotazioni(int n_tessera);
 }
