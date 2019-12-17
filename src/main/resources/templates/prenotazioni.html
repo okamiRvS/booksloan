@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Prenotazioni in corso</title>
+</head>
+<body>
+	<div align="center">
+		<h1>
+			
+		</h1>
+
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>ISBN</th>
+					<th>n_tessera</th>
+					<th>Data inizio</th>
+					<th>Data consegna</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="prestito : ${listPrestito}">
+					<td th:text="${prestito.isbn}">ISBN</td>
+					<td th:text="${prestito.n_tessera}">Numero Tessera</td>
+					<td th:text="${prestito.data_inizio}">Data Inizio</td>
+					<td th:text="${prestito. data_consegna}">Data Consegna</td>
+
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<form th:action="@{'/index/'}" method="post">
+			<input type="submit" value="Torna Indietro" />
+		</form>
+	</div>
+</body>
+</html>

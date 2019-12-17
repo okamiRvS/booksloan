@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import net.assignment.booksLoan.model.Copia;
+import net.assignment.booksLoan.model.Prestito;
 
 @Repository
 public interface CopiaRepository extends JpaRepository<Copia, Integer> {
@@ -22,13 +23,14 @@ public interface CopiaRepository extends JpaRepository<Copia, Integer> {
 	@Modifying
 	@Query(value = "UPDATE Copia SET disponibilita = 0 WHERE isbn = ?1", nativeQuery = true)
 	public void setCopiaPrenotata(Long isbn);
-	
+
 	@Modifying
 	@Query(value = "INSERT INTO Prestito (n_tessera, isbn) VALUES (?1, ?2)", nativeQuery = true)
 	public void setUtentePrestito(int n_tessera, Long isbn);
-	
+
 	@Query(value = "SELECT u.n_tessera FROM Utente u WHERE u.username = ?1", nativeQuery = true)
 	public int getN_tessera(String username);
-	
-	
+
+	@Query (value = "SELECT isbn, n_tessera, DATE_FORMAT(p.data_inizio, '%d %m %Y') AS data_inizio, DATE_FORMAT(p.data_consegna, '%d %m %Y') AS data_consegna FROM Prestito p WHERE p.n_tessera = ?1", nativeQuery = true)
+    public List<Prestito> prenotazioni(int n_tessera);
 }

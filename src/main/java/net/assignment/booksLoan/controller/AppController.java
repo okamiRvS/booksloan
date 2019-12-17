@@ -15,8 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.service.LibroService;
 import net.assignment.booksLoan.service.CopieService;
+import net.assignment.booksLoan.service.LibroService;
 
 @Controller
 public class AppController {
@@ -24,7 +24,7 @@ public class AppController {
 	private LibroService bookService;
 	@Autowired
     private CopieService copieService;
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -32,12 +32,12 @@ public class AppController {
 
 	@RequestMapping(value={"", "/", "/index"})
 	public String index(Model model) {
-		// Get ruolo dell'utente in sessione		
+		// Get ruolo dell'utente in sessione
 		String ruolo = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        
+
 		List<Libro> listBooks = bookService.listAll();
 		model.addAttribute("listBooks", listBooks);
-		
+
 		System.out.println(ruolo.equalsIgnoreCase("[ROLE_ADMIN]"));
 		if(ruolo.equalsIgnoreCase("[ROLE_ADMIN]")) {
 			return "indexAdmin";
@@ -54,13 +54,13 @@ public class AppController {
 
 
 	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {		
+	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 	    ModelAndView mav = new ModelAndView("edit_book");
 	    Libro book = bookService.get(id);
 	    mav.addObject("book", book);
 	    return mav;
 	}
-	
+
 	@RequestMapping("/nuovo_libro")
 	public String showAggiungiLibroPage(Model model) {
 	    Libro libro = new Libro();
@@ -91,7 +91,7 @@ public class AppController {
         return "copie";
 
     }
-	
+
 	@RequestMapping("/prenota/{isbn}")
     public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
         copieService.prenota(isbn);
@@ -104,5 +104,12 @@ public class AppController {
 
     }
 
-	
+	@RequestMapping("/prenotazioni/")
+    public String prenotazioni(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+        copieService.ElencoPrestiti(n_tessera);
+        return "prenotazioni";
+
+    }
 }
