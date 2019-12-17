@@ -15,13 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.service.BookService;
+import net.assignment.booksLoan.service.LibroService;
 import net.assignment.booksLoan.service.CopieService;
 
 @Controller
 public class AppController {
 	@Autowired
-	private BookService bookService;
+	private LibroService bookService;
 	@Autowired
     private CopieService copieService;
 	
@@ -57,7 +57,6 @@ public class AppController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("book") Libro book) {
 	    bookService.save(book);
-
 	    return "redirect:/";
 	}
 
@@ -69,6 +68,14 @@ public class AppController {
 
 	    return mav;
 	}
+	
+	@RequestMapping("/nuovo_libro")
+	public String showAggiungiLibroPage(Model model) {
+	    Libro libro = new Libro();
+	    model.addAttribute("book", libro);
+	    return "nuovo_libro";
+	}
+
 
 	@RequestMapping("/delete/{id}")
 	public String deleteProducte(@PathVariable(name = "id") int id) {
@@ -105,4 +112,5 @@ public class AppController {
 
     }
 
+	
 }

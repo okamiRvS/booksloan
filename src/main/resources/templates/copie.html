@@ -22,7 +22,7 @@
 				<tr th:each="copia : ${listCopie}">
 					<td th:text="${copia.isbn}">ISBN</td>
 					<td th:text="${copia.id}">ID</td>
-					<td th:text="${copia.disponibilita}">Disponbilità</td>
+					<td th:text="${copia.disponibilita}">Disponibilità</td>
 
 					<td th:if="${copia.disponibilita} == true"><a th:href="@{'/prenota/' + ${copia.isbn}}">Prenota</a></td>
 					<td th:if="${copia.disponibilita} == false">Non Prenotabile</td>

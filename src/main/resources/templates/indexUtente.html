@@ -20,9 +20,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="book : ${listBooks}">
-					<td th:text="${book.id}">Book ID</td>
-					<td th:text="${book.titolo}">Name</td>
-					<td th:text="${book.anno}">Name</td>
+					<td th:text="${book.id}">ID Libro</td>
+					<td th:text="${book.titolo}">Titolo</td>
+					<td th:text="${book.anno}">Anno</td>
 
 					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a>
 					

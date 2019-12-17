@@ -22,7 +22,11 @@ public class Libro {
     private String anno;
     
     
-    @ManyToMany(mappedBy = "libri")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                },mappedBy = "libri")
     private Set<Autore> autori = new HashSet<>();
 
     public Libro() {

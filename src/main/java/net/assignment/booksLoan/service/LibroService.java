@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.repository.BookRepository;
+import net.assignment.booksLoan.repository.LibroRepository;
 
 @Service
 @Transactional
-public class BookService {
+public class LibroService {
 
     @Autowired
-    private BookRepository repo;
+    private LibroRepository repo;
 
     public List<Libro> listAll() {
         return repo.findAll();
@@ -31,4 +31,5 @@ public class BookService {
     public void delete(int id) {
         repo.deleteById(id);
     }
+   
 }
