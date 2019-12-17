@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `copia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `copia` (
-  `isbn` bigint(20) NOT NULL,
+  `isbn` int(13) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `disponibilita` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`isbn`),
@@ -81,7 +81,7 @@ CREATE TABLE `libro` (
   `titolo` text,
   `anno` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1980),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(114,'La verità sul caso Harry Quebert',2012),(116,'I Leoni di Sicilia',2017),(117,'La casa di carta',2013),(118,'Critica della ragion pura',1786);
+INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(114,'La verità sul caso Harry Quebert',2012),(116,'I Leoni di Sicilia',2017),(117,'La casa di carta',2013),(118,'Critica della ragion pura',1786),(120,'Critica della ragion pura',1780),(121,'Guida galattica per gli autostoppisti',1981),(122,'Prova 3',2000),(123,'Prova 3',2001);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,11 +105,11 @@ CREATE TABLE `prestito` (
   `data_inizio` datetime DEFAULT CURRENT_TIMESTAMP,
   `data_consegna` datetime DEFAULT NULL,
   `n_tessera` int(11) NOT NULL,
-  `isbn` bigint(20) NOT NULL,
+  `isbn` int(13) NOT NULL,
   PRIMARY KEY (`n_tessera`,`isbn`),
   KEY `n_tessera_idx` (`n_tessera`),
-  KEY `fk_prestito_copia1_idx` (`isbn`),
-  CONSTRAINT `fk_prestito_copia1` FOREIGN KEY (`isbn`) REFERENCES `copia` (`isbn`),
+  KEY `fk_copia_isbn_idx` (`isbn`),
+  CONSTRAINT `fk_copia_isbn` FOREIGN KEY (`isbn`) REFERENCES `copia` (`isbn`),
   CONSTRAINT `n_tessera` FOREIGN KEY (`n_tessera`) REFERENCES `utente` (`n_tessera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -215,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 10:48:17
+-- Dump completed on 2019-12-17 15:18:12
