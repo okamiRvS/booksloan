@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>CIAO ADMIN BELLA</h1>
+		<h1>Lista libri</h1>
 		<form th:action="@{'/nuovo_libro/'}" method="post">
 		<input type="submit" value="Aggiungi Libro" />
 		</form>	
@@ -27,7 +27,7 @@
 					<td th:text="${book.titolo}">Titolo</td>
 					<td th:text="${book.anno}">Anno</td>
 
-					<td><a th:href="@{'/edit/' + ${book.id}}">Edit</a>
+					<td><a th:href="@{'/edit/' + ${book.id}}">Modifica</a>
 					<a th:href="@{'/delete/' + ${book.id}}">  Cancella</a>
 
 				</tr>

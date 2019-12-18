@@ -21,11 +21,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="prestito : ${listPrestito}">
-					<td th:text="${prestito.isbn}">ISBN</td>
-					<td th:text="${prestito.n_tessera}">Numero Tessera</td>
-					<td th:text="${prestito.data_inizio}">Data Inizio</td>
-					<td th:text="${prestito. data_consegna}">Data Consegna</td>
+				<tr th:each="prenotazione : ${listaPrenotazioni}">
+					<td th:text="${prenotazione.isbn}">ISBN</td>
+					<td th:text="${prenotazione.n_tessera}">Numero Tessera</td>
+					<td th:text="${prenotazione.data_inizio}">Data Inizio</td>
+					<td th:text="${prenotazione. data_consegna}">Data Consegna</td>
 
 				</tr>
 			</tbody>

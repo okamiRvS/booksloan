@@ -15,6 +15,4 @@ public interface PrestitoRepository extends JpaRepository<Prestito, Integer> {
 	
 	@Query (value = "SELECT * FROM Prestito p WHERE p.n_tessera = ?1", nativeQuery = true)
     public List<Prestito> prenotazioni(int n_tessera);
-	
-	//CAST(isbn AS CHAR), CAST(n_tessera AS CHAR), DATE_FORMAT(p.data_inizio, '%d %m %Y') AS data_inizio, DATE_FORMAT(p.data_consegna, '%d %m %Y') AS data_consegna 
 }

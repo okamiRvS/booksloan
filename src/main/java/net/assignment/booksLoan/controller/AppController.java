@@ -56,7 +56,6 @@ public class AppController {
 	    return "redirect:/";
 	}
 
-
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 	    ModelAndView mav = new ModelAndView("edit_book");
@@ -71,7 +70,6 @@ public class AppController {
 	    model.addAttribute("book", libro);
 	    return "nuovo_libro";
 	}
-
 
 	@RequestMapping("/delete/{id}")
 	public String deleteProducte(@PathVariable(name = "id") int id) {
@@ -110,16 +108,10 @@ public class AppController {
 
 	@RequestMapping("/prenotazioni/")
     public String prenotazioni(Model model) {
-		/*
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int n_tessera = copieService.getN_tessera(username);
-        copieService.ElencoPrestiti(n_tessera);
-        return "prenotazioni";
-		 */
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int n_tessera = copieService.getN_tessera(username);
-		List<Prestito> prenotazioni = prestitoService.ElencoPrestiti(n_tessera);
-		model.addAttribute("prenotazioni", prenotazioni);
+		List<Prestito> listaPrenotazioni = prestitoService.ElencoPrestiti(n_tessera);
+		model.addAttribute("listaPrenotazioni", listaPrenotazioni);
         return "prenotazioni";
     }
 }
