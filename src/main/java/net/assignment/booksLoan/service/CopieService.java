@@ -23,7 +23,10 @@ public class CopieService {
         return repo.findCopieById(id);
     }
    
-
+    public void save(Copia copia) {
+        repo.save(copia);
+    }
+    
     public String TitoloId(int id){
         return repo.findTitoloById(id);
     }

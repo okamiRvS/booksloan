@@ -55,6 +55,10 @@ public class AppController {
 	    bookService.save(book);
 	    return "redirect:/";
 	}
+	public String saveCopia(@ModelAttribute("book") Copia copia) {
+	    copieService.save(copia);
+	    return "redirect:/";
+	}
 
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
@@ -124,13 +128,15 @@ public class AppController {
         return "prenotazioni";
     }
 	
-	/*
+	
 	@RequestMapping("/aggiungi_copia/{id}")
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
-		int disponibilità = 1;
-		copieService.aggiungiISBN(id);
-		
-	}*/
+		model.addAttribute("id", id);
+		model.addAttribute("disponibilita", 1);
+		Copia copia = new Copia();
+		model.addAttribute("copia", copia);
+		return "aggiungi_copia";
+	}
 	
 	
 }

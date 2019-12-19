@@ -60,5 +60,5 @@ public class Copia {
     public void setDisponibilita(boolean disponibilita) {
         this.disponibilita = disponibilita;
     }
-    
+
 }
