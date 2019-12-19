@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Copie</title>
+</head>
+<body>
+	<div align="center">
+		<h1>
+			<span th:text="${username}" th:remove="tag">title</span>
+			<span> hai restituito il libro!</span>
+
+		</h1>
+		<br />
+		<form th:action="@{'/prenotazioni/'}" method="post">
+		<input type="submit" value="Visualizza le tue prenotazioni" />
+		<form th:action="@{'/index/'}" method="post">
+			<input type="submit" value="Torna Indietro" />
+		</form>
+	</div>
+</body>
+</html>

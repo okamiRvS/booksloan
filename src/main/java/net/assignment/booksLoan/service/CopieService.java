@@ -39,9 +39,15 @@ public class CopieService {
     public void setUtentePrestito(int n_tessera, Long isbn) {
     	repo.setUtentePrestito(n_tessera, isbn);
     }
+    
+    
     public Copia get(int id) {
         return repo.findById(id).get();
     }
 
+    public void restituisciISBN(Long isbn) {
+    	repo.restituisciISBN(isbn);
+    }
+    
 
 }

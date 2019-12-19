@@ -24,5 +24,9 @@ public class PrestitoService {
 	 public List<Prestito> ElencoPrestiti(int n_tessera){
 	        return repo.prenotazioni(n_tessera);
 	  }
+	 
+	 public void delete(Long isbn, int n_tessera) {
+	        repo.deleteByKey(isbn, n_tessera);
+	  }
 	    
 }

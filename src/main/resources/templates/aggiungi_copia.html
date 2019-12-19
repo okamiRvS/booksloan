@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Aggiungi copia</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Aggiungi nuova copia!</h1>
+        <br />
+        <form action="#" th:action="@{/save}" th:object="${copia}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                 <tr>
+                    <td>ISBN:</td>
+                    <td><input type="text" th:field="*{isbn}" /></td>
+                </tr> 
+				<tr>
+                    <td>ID</td>
+                    <td><input type="text" th:value="${copia.id}" name="id" readonly="readonly"/></td>
+                </tr> 
+                <tr>
+                    <td>Disponibilità</td>
+                    <td><input type="text" th:value="1" name="id" readonly="readonly"/></td>
+                </tr> 
+                <tr>
+                    <td colspan="2"><button type="submit">Aggiungi</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

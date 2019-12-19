@@ -99,10 +99,19 @@ public class AppController {
         copieService.prenota(isbn);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int n_tessera = copieService.getN_tessera(username);
-        System.out.println("Ital");
         copieService.setUtentePrestito(n_tessera, isbn);
         model.addAttribute("username", username);
         return "prenota";
+
+    }
+	
+	@RequestMapping("/restituisci/{isbn}")
+    public String restituisciCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+        copieService.restituisciISBN(isbn);
+        prestitoService.delete(isbn, n_tessera);
+        return "restituisci";
 
     }
 
@@ -114,4 +123,14 @@ public class AppController {
 		model.addAttribute("listaPrenotazioni", listaPrenotazioni);
         return "prenotazioni";
     }
+	
+	/*
+	@RequestMapping("/aggiungi_copia/{id}")
+	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
+		int disponibilità = 1;
+		copieService.aggiungiISBN(id);
+		
+	}*/
+	
+	
 }
