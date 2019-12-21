@@ -15,4 +15,8 @@ public interface PrestitoRepository extends JpaRepository<Prestito, Integer> {
 	
 	@Query (value = "SELECT * FROM Prestito p WHERE p.n_tessera = ?1", nativeQuery = true)
     public List<Prestito> prenotazioni(int n_tessera);
+	
+	@Modifying
+	@Query(value = "DELETE FROM Prestito WHERE isbn = ?1 and n_tessera = ?2", nativeQuery = true)
+	public void deleteByKey(Long isbn, int n_tessera);
 }

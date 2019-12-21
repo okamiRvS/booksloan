@@ -68,6 +68,12 @@ public class AppController {
 		bookService.save(book);
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/save_copia", method = RequestMethod.POST)
+	public String saveCopia(@ModelAttribute("copia") Copia copia) {
+	    copieService.save(copia);
+	    return "redirect:/";
+	}
 
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
@@ -108,16 +114,25 @@ public class AppController {
 	}
 
 	@RequestMapping("/prenota/{isbn}")
-	public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
-		copieService.prenota(isbn);
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		int n_tessera = copieService.getN_tessera(username);
-		System.out.println("Ital");
-		copieService.setUtentePrestito(n_tessera, isbn);
-		model.addAttribute("username", username);
-		return "prenota";
+    public String prenotaCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
+        copieService.prenota(isbn);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+        copieService.setUtentePrestito(n_tessera, isbn);
+        model.addAttribute("username", username);
+        return "prenota";
 
-	}
+    }
+	
+	@RequestMapping("/restituisci/{isbn}")
+    public String restituisciCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+        copieService.restituisciISBN(isbn);
+        prestitoService.delete(isbn, n_tessera);
+        return "restituisci";
+
+    }
 
 	@RequestMapping("/prenotazioni/")
 	public String prenotazioni(Model model) {
@@ -125,6 +140,23 @@ public class AppController {
 		int n_tessera = copieService.getN_tessera(username);
 		List<Prestito> listaPrenotazioni = prestitoService.ElencoPrestiti(n_tessera);
 		model.addAttribute("listaPrenotazioni", listaPrenotazioni);
-		return "prenotazioni";
+        return "prenotazioni";
+    }
+	
+	
+	@RequestMapping("/copieAdm/{id}")
+	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
+		List<Copia> listCopie = copieService.CopieId(id);
+        model.addAttribute("listCopie", listCopie);
+        String book = copieService.TitoloId(id);
+        model.addAttribute("book", book);
+        return "copieAdm";
+	}
+	
+	@RequestMapping("/nuova_copia/{id}")
+	public String showAggiungiCopiaPage(Model model, @PathVariable(name = "id") int id) {
+	    Copia copia = copieService.get(id);
+	    model.addAttribute("copia", copia);
+	    return "nuova_copia";
 	}
 }

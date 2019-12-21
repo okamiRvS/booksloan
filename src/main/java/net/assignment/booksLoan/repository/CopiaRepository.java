@@ -25,10 +25,13 @@ public interface CopiaRepository extends JpaRepository<Copia, Integer> {
 	public void setCopiaPrenotata(Long isbn);
 
 	@Modifying
-	@Query(value = "INSERT INTO Prestito (n_tessera, isbn) VALUES (?1, ?2)", nativeQuery = true)
+	@Query(value = "INSERT INTO Prestito (data_consegna, n_tessera, isbn) VALUES (timestampadd(month,1,current_timestamp), ?1, ?2)", nativeQuery = true)
 	public void setUtentePrestito(int n_tessera, Long isbn);
 
 	@Query(value = "SELECT u.n_tessera FROM Utente u WHERE u.username = ?1", nativeQuery = true)
 	public int getN_tessera(String username);
 
+	@Modifying
+	@Query(value = "UPDATE Copia SET disponibilita = 1 WHERE isbn = ?1", nativeQuery = true)
+	public void restituisciISBN(Long isbn);
 }

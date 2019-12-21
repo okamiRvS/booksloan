@@ -18,6 +18,8 @@
 					<th>n_tessera</th>
 					<th>Data inizio</th>
 					<th>Data consegna</th>
+					<th>Azioni</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -26,7 +28,7 @@
 					<td th:text="${prenotazione.n_tessera}">Numero Tessera</td>
 					<td th:text="${prenotazione.data_inizio}">Data Inizio</td>
 					<td th:text="${prenotazione. data_consegna}">Data Consegna</td>
-
+					<td><a th:href="@{'/restituisci/' + ${prenotazione.isbn}}">Restituisci Libro</a></td>
 				</tr>
 			</tbody>
 		</table>

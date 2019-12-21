@@ -23,7 +23,10 @@ public class CopieService {
         return repo.findCopieById(id);
     }
    
-
+    public void save(Copia copia) {
+        repo.save(copia);
+    }
+    
     public String TitoloId(int id){
         return repo.findTitoloById(id);
     }
@@ -39,9 +42,15 @@ public class CopieService {
     public void setUtentePrestito(int n_tessera, Long isbn) {
     	repo.setUtentePrestito(n_tessera, isbn);
     }
+    
+    
     public Copia get(int id) {
         return repo.findById(id).get();
     }
 
+    public void restituisciISBN(Long isbn) {
+    	repo.restituisciISBN(isbn);
+    }
+    
 
 }
