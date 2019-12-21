@@ -1,17 +1,14 @@
 package net.assignment.booksLoan.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name="libro", schema="booksloan")
@@ -22,13 +19,12 @@ public class Libro {
     private String titolo;
     private String anno;
     
-    
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-                },mappedBy = "libri")
-    private Set<Autore> autori = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+    		  name = "scritto", 
+    		  joinColumns = @JoinColumn(name = "id"), 
+    		  inverseJoinColumns = @JoinColumn(name = "id_autore"))
+    private List<Autore> listAutore;
 
     public Libro() {
     }
@@ -56,6 +52,13 @@ public class Libro {
 	public void setAnno(String anno) {
 		this.anno = anno;
 	}
-	
+
+	public List<Autore> getListAutore() {
+		return listAutore;
+	}
+
+	public void setListAutore(List<Autore> listAutore) {
+		this.listAutore = listAutore;
+	}
 	
 }

@@ -9,8 +9,8 @@
 	<div align="center">
 		<h1>Lista libri</h1>
 		<form th:action="@{'/prenotazioni/'}" method="post">
-		<input type="submit" value="Prenotazioni" />
-		</form>	
+			<input type="submit" value="Prenotazioni" />
+		</form>
 		<br />
 		<table border="1" cellpadding="10">
 			<thead>
@@ -18,6 +18,7 @@
 					<th>ID Libro</th>
 					<th>Titolo</th>
 					<th>Anno</th>
+					<th>Autore</th>
 					<th>Azioni</th>
 				</tr>
 			</thead>
@@ -26,11 +27,17 @@
 					<td th:text="${book.id}">ID Libro</td>
 					<td th:text="${book.titolo}">Titolo</td>
 					<td th:text="${book.anno}">Anno</td>
-
-					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a>
-					
+					<!-- 
+					<td th:if="${book.listAutore.size() > 0}" th:text="${book.listAutore[0].nome} + ' ' + ${book.listAutore[0].cognome}">Autore</td>
+					 -->
+					<td th:if="${book.listAutore.size() > 0}">
+						<p th:each="autore : ${book.listAutore}">
+							<span th:text="${autore.nome} + ' ' + ${autore.cognome}">Autore</span>
+						</p>
 					</td>
+					<td th:if="${book.listAutore.size() == 0}"></td>
 
+					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a></td>
 				</tr>
 			</tbody>
 		</table>
