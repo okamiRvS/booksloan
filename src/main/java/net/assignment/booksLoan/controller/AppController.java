@@ -55,7 +55,9 @@ public class AppController {
 	    bookService.save(book);
 	    return "redirect:/";
 	}
-	public String saveCopia(@ModelAttribute("book") Copia copia) {
+	
+	@RequestMapping(value = "/save_copia", method = RequestMethod.POST)
+	public String saveCopia(@ModelAttribute("copia") Copia copia) {
 	    copieService.save(copia);
 	    return "redirect:/";
 	}
@@ -129,14 +131,20 @@ public class AppController {
     }
 	
 	
-	@RequestMapping("/aggiungi_copia/{id}")
+	@RequestMapping("/copieAdm/{id}")
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
-		model.addAttribute("id", id);
-		model.addAttribute("disponibilita", 1);
-		Copia copia = new Copia();
-		model.addAttribute("copia", copia);
-		return "aggiungi_copia";
+		List<Copia> listCopie = copieService.CopieId(id);
+        model.addAttribute("listCopie", listCopie);
+        String book = copieService.TitoloId(id);
+        model.addAttribute("book", book);
+        return "copieAdm";
 	}
 	
+	@RequestMapping("/nuova_copia/{id}")
+	public String showAggiungiCopiaPage(Model model, @PathVariable(name = "id") int id) {
+	    Copia copia = copieService.get(id);
+	    model.addAttribute("copia", copia);
+	    return "nuova_copia";
+	}
 	
 }
