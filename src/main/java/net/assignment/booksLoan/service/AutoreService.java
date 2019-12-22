@@ -12,12 +12,16 @@ import net.assignment.booksLoan.repository.AutoreRepository;
 @Service
 @Transactional
 public class AutoreService {
-	
+
     @Autowired
     private AutoreRepository repo;
 
 	public List<Autore> trovaAutoreScritto(int id) {
 		return repo.trovaAutoreScritto(id);
+	}
+
+	public void setAutore(int id_autore, String nome, String cognome) {
+	    repo.setAutore(id_autore, nome, cognome);
 	}
 
 }
