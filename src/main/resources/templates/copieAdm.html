@@ -7,11 +7,10 @@
 </head>
 <body>
 	<div align="center">
-		<h1><td th:text="${book}"></td>
-		
+		<h1 th:text="${book}"></h1>
 		<form th:action="@{'/nuova_copia/' + ${id}}" method="post">
-		<input type="submit" value="Aggiungi Copia" />
-		</h1>
+			<input type="submit" value="Aggiungi Copia" />
+		</form>
 		<br />
 		<table border="1" cellpadding="10">
 			<thead>
@@ -30,7 +29,6 @@
 			</tbody>
 		</table>
 		<br />
-		
 		<form th:action="@{'/index/'}" method="post">
 			<input type="submit" value="Torna Indietro" />
 		</form>

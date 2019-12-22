@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Autore;
@@ -71,7 +72,10 @@ public class AppController {
 	
 	@RequestMapping(value = "/save_copia", method = RequestMethod.POST)
 	public String saveCopia(@ModelAttribute("copia") Copia copia) {
-	    copieService.save(copia);
+		if(copieService.existsById(copia.getIsbn())) {
+			return "redirect:/nuova_copia/" + copia.getId() + "?error";
+		}
+	    copieService.setCopia(copia.getIsbn(), copia.getId(), copia.getDisponibilita());
 	    return "redirect:/";
 	}
 
@@ -154,9 +158,15 @@ public class AppController {
 	}
 	
 	@RequestMapping("/nuova_copia/{id}")
-	public String showAggiungiCopiaPage(Model model, @PathVariable(name = "id") int id) {
-	    Copia copia = copieService.get(id);
+	public String showAggiungiCopiaPage(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
+		Boolean error = false;
+		if(param != null) {
+			error = true;
+		}
+		Copia copia = new Copia();
+	    copia.setId(id);
 	    model.addAttribute("copia", copia);
+	    model.addAttribute("error", error);
 	    return "nuova_copia";
 	}
 }

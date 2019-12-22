@@ -23,8 +23,8 @@ public class CopieService {
         return repo.findCopieById(id);
     }
    
-    public void save(Copia copia) {
-        repo.save(copia);
+    public void setCopia(Long isbn, int id, boolean disponibilita) {
+   		repo.setCopia(isbn, id, disponibilita);
     }
     
     public String TitoloId(int id){
@@ -42,14 +42,13 @@ public class CopieService {
     public void setUtentePrestito(int n_tessera, Long isbn) {
     	repo.setUtentePrestito(n_tessera, isbn);
     }
-    
-    
-    public Copia get(int id) {
-        return repo.findById(id).get();
-    }
 
     public void restituisciISBN(Long isbn) {
     	repo.restituisciISBN(isbn);
+    }
+    
+    public boolean existsById(Long id) {
+    	return repo.existsById(id);
     }
     
 

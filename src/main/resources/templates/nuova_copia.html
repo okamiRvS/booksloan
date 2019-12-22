@@ -15,11 +15,14 @@
             <table border="0" cellpadding="10">
                  <tr>
                     <td>ISBN:</td>
-                    <td><input type="text" th:field="*{isbn}" /></td>
+                    <td>
+                    	<input type="text" th:field="*{isbn}" required="required" maxlength="11" />
+                    	<span th:if="${error}" style="color:red"> *</span>
+                   	</td> 
                 </tr>   
                  <tr>
                     <td>ID:</td>
-                    <td><input type="text" name="id" readonly="readonly" /></td>
+                    <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
                 </tr>      
                 <tr>
                     <td>Disponibilita:</td>

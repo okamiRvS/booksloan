@@ -11,7 +11,7 @@ import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Prestito;
 
 @Repository
-public interface CopiaRepository extends JpaRepository<Copia, Integer> {
+public interface CopiaRepository extends JpaRepository<Copia, Long> {
 
 	// https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-introduction-to-query-methods/
 	@Query(value = "SELECT * FROM Copia c JOIN Libro l on c.id = l.id where c.id = ?1", nativeQuery = true)
@@ -27,6 +27,10 @@ public interface CopiaRepository extends JpaRepository<Copia, Integer> {
 	@Modifying
 	@Query(value = "INSERT INTO Prestito (data_consegna, n_tessera, isbn) VALUES (timestampadd(month,1,current_timestamp), ?1, ?2)", nativeQuery = true)
 	public void setUtentePrestito(int n_tessera, Long isbn);
+	
+	@Modifying
+	@Query(value = "INSERT INTO Copia (isbn, id, disponibilita) VALUES (?1, ?2, ?3)", nativeQuery = true)
+	public void setCopia(Long isbn, int id, boolean disponibilita);
 
 	@Query(value = "SELECT u.n_tessera FROM Utente u WHERE u.username = ?1", nativeQuery = true)
 	public int getN_tessera(String username);
@@ -34,4 +38,5 @@ public interface CopiaRepository extends JpaRepository<Copia, Integer> {
 	@Modifying
 	@Query(value = "UPDATE Copia SET disponibilita = 1 WHERE isbn = ?1", nativeQuery = true)
 	public void restituisciISBN(Long isbn);
+
 }
