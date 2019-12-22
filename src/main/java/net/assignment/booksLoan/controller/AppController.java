@@ -79,6 +79,12 @@ public class AppController {
 	    return "redirect:/";
 	}
 
+	@RequestMapping(value = "/save_autore", method = RequestMethod.POST)
+    public String saveAutore(@ModelAttribute("autore") Autore autore) {
+	    autoreService.setAutore(autore.getId_autore(), autore.getNome(), autore.getCognome());
+        return "redirect:/";
+    }
+
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_book");
