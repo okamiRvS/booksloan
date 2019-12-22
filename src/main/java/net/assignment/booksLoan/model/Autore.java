@@ -1,6 +1,7 @@
 package net.assignment.booksLoan.model;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,10 @@ public class Autore {
     private String nome;
     @Column
     private String cognome;
-   
+
     @ManyToMany
-    private List<Libro> listAutore;  
-    
+    private List<Libro> listAutore;
+
     public Autore() {
 
     }
@@ -51,5 +52,6 @@ public class Autore {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
+
 
 }

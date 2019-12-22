@@ -42,7 +42,7 @@ public class AppController {
 
 	@RequestMapping(value = { "", "/", "/index" })
 	public String index(Model model) {
-		
+
 		List<Libro> listBooks = bookService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
 		for (Libro libro : listBooks) {
@@ -69,7 +69,7 @@ public class AppController {
 		bookService.save(book);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping(value = "/save_copia", method = RequestMethod.POST)
 	public String saveCopia(@ModelAttribute("copia") Copia copia) {
 		if(copieService.existsById(copia.getIsbn())) {
@@ -127,7 +127,7 @@ public class AppController {
         return "prenota";
 
     }
-	
+
 	@RequestMapping("/restituisci/{isbn}")
     public String restituisciCopia(Model model, @PathVariable(name = "isbn") Long isbn) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -146,8 +146,8 @@ public class AppController {
 		model.addAttribute("listaPrenotazioni", listaPrenotazioni);
         return "prenotazioni";
     }
-	
-	
+
+
 	@RequestMapping("/copieAdm/{id}")
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
 		List<Copia> listCopie = copieService.CopieId(id);
@@ -156,7 +156,7 @@ public class AppController {
         model.addAttribute("book", book);
         return "copieAdm";
 	}
-	
+
 	@RequestMapping("/nuova_copia/{id}")
 	public String showAggiungiCopiaPage(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
 		Boolean error = false;
@@ -169,4 +169,17 @@ public class AppController {
 	    model.addAttribute("error", error);
 	    return "nuova_copia";
 	}
+
+	@RequestMapping("/autoriAdm/{id}")
+    public String showAutoriPage(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
+        Boolean error = false;
+        if(param != null) {
+            error = true;
+        }
+        Autore autore = new Autore();
+        autore.setId_autore(id);
+        model.addAttribute("autore", autore);
+        model.addAttribute("error", error);
+        return "autoriAdm";
+    }
 }
