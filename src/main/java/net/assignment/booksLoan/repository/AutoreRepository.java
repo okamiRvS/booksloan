@@ -17,4 +17,7 @@ public interface AutoreRepository extends JpaRepository<Autore, Integer> {
 	@Modifying
     @Query(value = "INSERT INTO Scritto (id, id_autore) VALUES (?1, ?2)", nativeQuery = true)
     public void setScritto(int id, int id_autore);
+
+	@Query(value = "SELECT a.id_autore, a.nome, a.cognome FROM Autore a WHERE a.id_autore NOT IN (SELECT a.id_autore FROM Autore a JOIN Scritto s ON a.id_autore = s.id_autore WHERE s.id=?1)", nativeQuery = true)
+	public List<Autore> trovaAutoriDiversi(int id);
 }

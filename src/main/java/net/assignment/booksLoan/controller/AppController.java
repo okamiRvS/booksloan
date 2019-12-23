@@ -203,7 +203,9 @@ public class AppController {
 	
 	@RequestMapping("/nuovo_autore/{id}")
     public String showAggiungiAutoriPage(Model model, @PathVariable(name = "id") int id) {
+		List<Autore> listAutori = autoreService.trovaAutoriDiversi(id);
         Autore autore = new Autore();
+        model.addAttribute("listAutori", listAutori);
         model.addAttribute("autore", autore);
         model.addAttribute("id_libro", id);
         return "nuovo_autore";

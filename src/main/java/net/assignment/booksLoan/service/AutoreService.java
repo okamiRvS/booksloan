@@ -37,4 +37,8 @@ public class AutoreService {
 		
 	}
 
+	public List<Autore> trovaAutoriDiversi(int id) {
+		return repo.trovaAutoriDiversi(id);
+	}
+
 }
