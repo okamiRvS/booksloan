@@ -17,4 +17,8 @@ public interface AutoreRepository extends JpaRepository<Autore, Integer> {
 	@Modifying
     @Query(value = "INSERT INTO Scritto (id, id_autore) VALUES (?1, ?2)", nativeQuery = true)
     public void setScritto(int id, int id_autore);
+	
+	@Modifying
+    @Query(value = "DELETE FROM Scritto WHERE id_autore = ?1", nativeQuery = true)
+    public void deleteScritto(int id_autore);
 }
