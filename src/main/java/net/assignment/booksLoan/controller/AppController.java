@@ -85,21 +85,11 @@ public class AppController {
         return "redirect:/autoriAdm/" + id_libro;
     }
 	
-	/* da sistemare forse non usare modeland view e' meglio
-	@RequestMapping(value = "/save_based_autore", method = RequestMethod.POST)
-    public String saveBasedAutore(@ModelAttribute("autore") Autore autore) {
-		System.out.println(autore.toString());
-	    autoreService.save(autore);
-        return "redirect:/";
+	@RequestMapping(value = "/save_autore/{id}/{id_autore}", method = RequestMethod.GET)
+    public String saveAutoreID(@PathVariable(name = "id") int id, @PathVariable(name = "id_autore") int id_autore) {
+	    autoreService.setAutoreSoloSuScritto(id, id_autore);
+        return "redirect:/autoriAdm/" + id;
     }
-
-	@RequestMapping("/editAutore/{id_autore}")
-	public ModelAndView showEditBasedAutore(@PathVariable(name = "id_autore") int id_autore) {
-		ModelAndView mav = new ModelAndView("edit_autore");
-		Autore autore = autoreService.getOne(id_autore);
-		mav.addObject("autore", autore);
-		return mav;
-	} end sistemare */
 	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {

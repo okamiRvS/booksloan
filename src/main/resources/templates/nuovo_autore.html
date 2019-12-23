@@ -34,7 +34,7 @@
 	<div align="center">
 		<h1>Aggiungi Autore</h1>
 	<p>Aggiungi un autore cercandolo:</p>
-	<input id="myInput" type="text" placeholder="Cerca..">
+	<input id="myInput" type="text" placeholder="Cerca...">
 	<br>
 	<br>
 
@@ -50,7 +50,7 @@
 			<tr th:each="autore : ${listAutori}">
 				<td th:text="${autore.nome}">ISBN</td>
 				<td th:text="${autore.cognome}">ID</td>
-				<td><a th:href="@{'/prenota/'}">Aggiungi</a></td>
+				<td><a th:href="@{'/save_autore/'  + ${id_libro} + '/' + ${autore.id_autore}}">Aggiungi</a></td>
 			</tr>
 		</tbody>
 	</table>

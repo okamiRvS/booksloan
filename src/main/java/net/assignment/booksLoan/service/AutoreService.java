@@ -24,6 +24,10 @@ public class AutoreService {
 		repo.setScritto(id, saveAndFlush(a).getId_autore());
 	}
 	
+	public void setAutoreSoloSuScritto(int id, int id_autore) {
+		repo.setScritto(id, id_autore);
+	}
+	
 	public Autore saveAndFlush(Autore a) {
 		return repo.saveAndFlush(a);
 	}
