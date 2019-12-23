@@ -206,5 +206,11 @@ public class AppController {
 		autoreService.deleteScritto(id_autore);
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/elimina_copia/{isbn}")
+	public String eliminaCopia(@PathVariable(name = "isbn") long isbn) {
+		copieService.delete(isbn);
+		return "redirect:/";
+	}
 
 }

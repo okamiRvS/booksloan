@@ -18,6 +18,7 @@
 					<th>ISBN</th>
 					<th>ID</th>
 					<th>Disponibilità</th>
+					<th>Azioni</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,6 +26,9 @@
 					<td th:text="${copia.isbn}">ISBN</td>
 					<td th:text="${copia.id}">ID</td>
 					<td th:text="${copia.disponibilita}">Disponibilità</td>
+					
+					<td th:if="${copia.disponibilita} == true"><a th:href="@{'/elimina_copia/' + ${copia.isbn}}">Elimina</a></td>
+					<td th:if="${copia.disponibilita} == false">Nessuna azione possibile</td>
 				</tr>
 			</tbody>
 		</table>
