@@ -8,25 +8,31 @@
 <!-- Jquery -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$("#myInput").on(
-						"keyup",
-						function() {
-							var value = $(this).val().toLowerCase();
-							if(value.length>0) {
-								$("#myTable").show();
-							} else {
-								$("#myTable").hide();
-							}
-							$("#myTable tr").filter(
-									function() {
-										$(this).toggle(
-												$(this).text().toLowerCase()
-														.indexOf(value) > -1)
-									});
-						});
+	$(document).ready(function() {
+		$("#myInput").on("keyup",function() {
+			var value = $(this).val().toLowerCase();
+			if(value.length>0) {
+				$("#myTable").show();
+			} else {
+				$("#myTable").hide();
+			}
+			// filtra senza considerare l'ultima colonna
+			$("#myTable tr").filter(function() {
+				var ncol = $("#myTable").find("tr:first td").length;
+				var bool = false;
+				for(i = 1; i < ncol; i++) {
+					if($(this).find("td:nth-child(" + i + ")").text().toLowerCase().indexOf(value) > -1) {
+						bool = true;
+					}
+				}
+				if(bool) {
+					$(this).toggle(true);
+				} else {
+					$(this).toggle(false);
+				}
 			});
+		});
+	});
 </script>
 
 </head>
