@@ -25,7 +25,7 @@ public class Autore {
 	private String cognome;
 
 	@ManyToMany
-	 @JoinTable(
+	@JoinTable(
    		  name = "scritto", 
    		  joinColumns = @JoinColumn(name = "id"), 
    		  inverseJoinColumns = @JoinColumn(name = "id_autore"))

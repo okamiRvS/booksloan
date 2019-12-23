@@ -50,12 +50,20 @@ public class AppController {
 		
 		List<Libro> listBooks = bookService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
-		for (Libro libro : listBooks) {
+		List<Libro> listSequel = new ArrayList<Libro>();
+		for (Libro libro : listBooks) {			
 			try {
 				listAutore = autoreService.trovaAutoreScritto(libro.getId());
 				libro.setListAutore(listAutore);
 			} catch (Exception e) {
-				System.out.println("non ha autori questo libro");
+				System.out.println("Non ha autori questo libro");
+			}
+			
+			try {
+				listSequel = bookService.trovaSequel(libro.getId());
+				libro.setListSequel(listSequel);
+			} catch (Exception e2) {
+				System.out.println("Non ha sequel questo libro");
 			}
 		}
 		model.addAttribute("listBooks", listBooks);

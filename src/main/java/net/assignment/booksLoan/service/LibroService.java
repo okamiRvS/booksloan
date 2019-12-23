@@ -32,5 +32,9 @@ public class LibroService {
     public void delete(int id) {
         repo.deleteById(id);
     }
+
+	public List<Libro> trovaSequel(int id) {
+		return repo.trovaSequel(id);
+	}
    
 }

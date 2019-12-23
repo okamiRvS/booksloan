@@ -25,6 +25,13 @@ public class Libro {
     		  joinColumns = @JoinColumn(name = "id"), 
     		  inverseJoinColumns = @JoinColumn(name = "id_autore"))
     private List<Autore> listAutore;
+    
+    @ManyToMany
+    @JoinTable(
+    		  name = "sequel", 
+    		  joinColumns = @JoinColumn(name = "id_1"), 
+    		  inverseJoinColumns = @JoinColumn(name = "id_2"))
+    private List<Libro> listSequel;
 
     public Libro() {
     }
@@ -59,6 +66,14 @@ public class Libro {
 
 	public void setListAutore(List<Autore> listAutore) {
 		this.listAutore = listAutore;
+	}
+
+	public List<Libro> getListSequel() {
+		return listSequel;
+		
+	}
+	public void setListSequel(List<Libro> listSequel) {
+		this.listSequel = listSequel;		
 	}
 	
 }
