@@ -27,7 +27,6 @@
 					<td th:text="${autore.nome}">Nome</td>
 					<td th:text="${autore.cognome}">Cognome</td>
 					<td>
-						<a th:href="@{'/editAutore/' + ${autore.id_autore}}">Modifica</a>
 						<a th:href="@{'/elimina_autore/' + ${autore.id_autore}}">  Cancella</a>
 					</td>
 				</tr>
