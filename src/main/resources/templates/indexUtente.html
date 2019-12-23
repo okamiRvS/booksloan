@@ -4,6 +4,11 @@
 <head>
 <meta charset="utf-8" />
 <title>Libri</title>
+<!-- Jquery -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/js/search.js}"></script>
+<!--CSS Personale-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
 </head>
 <body>
 	<div align="center">
@@ -11,6 +16,9 @@
 		<form th:action="@{'/prenotazioni/'}" method="post">
 			<input type="submit" value="Prenotazioni" />
 		</form>
+		<br />
+		<input id="myInput" type="text" placeholder="Cerca...">
+		<br />
 		<br />
 		<table border="1" cellpadding="10">
 			<thead>
@@ -22,7 +30,7 @@
 					<th>Azioni</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="myTable">
 				<tr th:each="book : ${listBooks}">
 					<td th:text="${book.id}">ID Libro</td>
 					<td th:text="${book.titolo}">Titolo</td>

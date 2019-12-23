@@ -4,10 +4,18 @@
 <head>
 <meta charset="utf-8" />
 <title>Copie</title>
+<!-- Jquery -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/js/search.js}"></script>
+<!--CSS Personale-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
 </head>
 <body>
 	<div align="center">
 		<h1 th:text="${book}"></h1>
+		<br />
+		<input id="myInput" type="text" placeholder="Cerca...">
+		<br />
 		<br />
 		<table border="1" cellpadding="10">
 			<thead>
@@ -18,7 +26,7 @@
 					<th>Azioni</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="myTable">
 				<tr th:each="copia : ${listCopie}">
 					<td th:text="${copia.isbn}">ISBN</td>
 					<td th:text="${copia.id}">ID</td>

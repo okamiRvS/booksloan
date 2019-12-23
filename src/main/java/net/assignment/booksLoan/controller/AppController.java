@@ -146,6 +146,7 @@ public class AppController {
         int n_tessera = copieService.getN_tessera(username);
         copieService.restituisciISBN(isbn);
         prestitoService.delete(isbn, n_tessera);
+        model.addAttribute("username", username);
         return "restituisci";
 
     }

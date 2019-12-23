@@ -4,41 +4,13 @@
 <head>
 <meta charset="utf-8" />
 <title>Aggiungi Autore</title>
-
 <!-- Jquery -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$("#myInput").on("keyup",function() {
-			var value = $(this).val().toLowerCase();
-			if(value.length>0) {
-				$("#myTable").show();
-			} else {
-				$("#myTable").hide();
-			}
-			// filtra senza considerare l'ultima colonna
-			$("#myTable tr").filter(function() {
-				var ncol = $("#myTable").find("tr:first td").length;
-				var bool = false;
-				for(i = 1; i < ncol; i++) {
-					if($(this).find("td:nth-child(" + i + ")").text().toLowerCase().indexOf(value) > -1) {
-						bool = true;
-					}
-				}
-				if(bool) {
-					$(this).toggle(true);
-				} else {
-					$(this).toggle(false);
-				}
-			});
-		});
-	});
-</script>
-
+<script th:src="@{/js/search.js}"></script>
 </head>
 <body>
 	<div align="center">
-		<h1>Aggiungi Autore</h1>
+	<h1>Aggiungi Autore</h1>
 	<p>Aggiungi un autore cercandolo:</p>
 	<input id="myInput" type="text" placeholder="Cerca...">
 	<br>
@@ -52,7 +24,7 @@
 				<th>Azione</th>
 			</tr>
 		</thead>
-		<tbody id="myTable" hidden>
+		<tbody class="search" id="myTable" hidden>
 			<tr th:each="autore : ${listAutori}">
 				<td th:text="${autore.nome}">ISBN</td>
 				<td th:text="${autore.cognome}">ID</td>
