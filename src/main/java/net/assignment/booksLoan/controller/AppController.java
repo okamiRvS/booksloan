@@ -204,7 +204,6 @@ public class AppController {
 	@RequestMapping("/elimina_autore/{id_autore}")
 	public String eliminaAutore(@PathVariable(name = "id_autore") int id_autore) {
 		autoreService.deleteScritto(id_autore);
-		autoreService.delete(id_autore);
 		return "redirect:/";
 	}
 
