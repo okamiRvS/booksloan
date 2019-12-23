@@ -41,8 +41,13 @@ public class AppController {
 	}
 
 	@RequestMapping(value = { "", "/", "/index" })
-	public String index(Model model) {
-
+	public String index(Model model, @RequestParam(value="error", required=false) String param) {
+		Boolean error = false;
+		if(param != null) {
+			error = true;
+		}
+		model.addAttribute("error", error);
+		
 		List<Libro> listBooks = bookService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
 		for (Libro libro : listBooks) {
@@ -108,7 +113,11 @@ public class AppController {
 
 	@RequestMapping("/delete/{id}")
 	public String deleteProducte(@PathVariable(name = "id") int id) {
-		bookService.delete(id);
+		try {
+			bookService.delete(id);
+		} catch(Exception e) {
+			return "redirect:/?error";
+		}
 
 		return "redirect:/";
 	}

@@ -13,6 +13,7 @@
 <body>
 	<div align="center">
 		<h1>Lista libri</h1>
+		<h1 th:if="${error}" style="color:red">Non puoi eliminarlo: esistono delle copie</h1>
 		<form th:action="@{'/nuovo_libro/'}" method="post">
 			<input type="submit" value="Aggiungi Libro" />
 		</form>
