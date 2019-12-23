@@ -51,5 +51,7 @@ public class CopieService {
     	return repo.existsById(id);
     }
     
-
+    public void delete(long id) {
+        repo.deleteById(id);
+    }
 }
