@@ -20,8 +20,21 @@ public class AutoreService {
 		return repo.trovaAutoreScritto(id);
 	}
 
-	public void setAutore(int id_autore, String nome, String cognome) {
-	    repo.setAutore(id_autore, nome, cognome);
+	public void setAutoreScritto(Autore a, int id) {
+		repo.setScritto(id, saveAndFlush(a).getId_autore());
+	}
+	
+	public Autore saveAndFlush(Autore a) {
+		return repo.saveAndFlush(a);
+	}
+
+	public Autore getOne(int id_autore) {
+		return repo.getOne(id_autore);
+	}
+
+	public Autore save(Autore autore) {
+		return repo.save(autore);
+		
 	}
 
 }

@@ -80,11 +80,27 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/save_autore", method = RequestMethod.POST)
-    public String saveAutore(@ModelAttribute("autore") Autore autore) {
-	    autoreService.setAutore(autore.getId_autore(), autore.getNome(), autore.getCognome());
+    public String saveAutore(@ModelAttribute("autore") Autore autore, int id_libro) {
+	    autoreService.setAutoreScritto(autore, id_libro);
+        return "redirect:/autoriAdm/" + id_libro;
+    }
+	
+	/* da sistemare forse non usare modeland view e' meglio
+	@RequestMapping(value = "/save_based_autore", method = RequestMethod.POST)
+    public String saveBasedAutore(@ModelAttribute("autore") Autore autore) {
+		System.out.println(autore.toString());
+	    autoreService.save(autore);
         return "redirect:/";
     }
 
+	@RequestMapping("/editAutore/{id_autore}")
+	public ModelAndView showEditBasedAutore(@PathVariable(name = "id_autore") int id_autore) {
+		ModelAndView mav = new ModelAndView("edit_autore");
+		Autore autore = autoreService.getOne(id_autore);
+		mav.addObject("autore", autore);
+		return mav;
+	} end sistemare */
+	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_book");
@@ -177,15 +193,19 @@ public class AppController {
 	}
 
 	@RequestMapping("/autoriAdm/{id}")
-    public String showAutoriPage(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
-        Boolean error = false;
-        if(param != null) {
-            error = true;
-        }
-        Autore autore = new Autore();
-        autore.setId_autore(id);
-        model.addAttribute("autore", autore);
-        model.addAttribute("error", error);
+	public String aggiungiAutore(Model model, @PathVariable(name = "id") int id) {
+		List<Autore> listAutori = autoreService.trovaAutoreScritto(id);
+        model.addAttribute("listAutori", listAutori);
+        String book = copieService.TitoloId(id);
+        model.addAttribute("book", book);
         return "autoriAdm";
+	}
+	
+	@RequestMapping("/nuovo_autore/{id}")
+    public String showAggiungiAutoriPage(Model model, @PathVariable(name = "id") int id) {
+        Autore autore = new Autore();
+        model.addAttribute("autore", autore);
+        model.addAttribute("id_libro", id);
+        return "nuovo_autore";
     }
 }
