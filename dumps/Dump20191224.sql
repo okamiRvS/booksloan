@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `booksloan` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `booksloan`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: booksloan
@@ -82,7 +80,7 @@ CREATE TABLE `libro` (
   `titolo` text,
   `anno` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +89,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(116,'I Leoni di Sicilia',2017),(118,'Critica della ragion pura',1781),(126,'Il gioco di Ripper',2013),(127,'Storia del nuovo cognome',2012),(130,'Storia della bambina perduta',2014);
+INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(116,'I Leoni di Sicilia',2017),(118,'Critica della ragion pura',1781),(126,'Il gioco di Ripper',2013),(127,'Storia del nuovo cognome',2012),(130,'Storia della bambina perduta',2014),(131,'Harry Potter e il prigioniero di Azkaban',1999);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +148,7 @@ CREATE TABLE `scritto` (
 
 LOCK TABLES `scritto` WRITE;
 /*!40000 ALTER TABLE `scritto` DISABLE KEYS */;
-INSERT INTO `scritto` VALUES (101,7),(102,6),(103,11),(104,1),(105,5),(106,3),(107,5),(108,4),(109,6),(110,4),(113,8),(116,12),(118,13),(126,14),(127,11);
+INSERT INTO `scritto` VALUES (101,7),(102,6),(103,11),(104,1),(105,5),(106,3),(107,5),(108,4),(109,6),(110,4),(113,8),(116,12),(118,13),(126,14),(127,11),(130,11);
 /*!40000 ALTER TABLE `scritto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +176,7 @@ CREATE TABLE `sequel` (
 
 LOCK TABLES `sequel` WRITE;
 /*!40000 ALTER TABLE `sequel` DISABLE KEYS */;
-INSERT INTO `sequel` VALUES (103,103),(108,108);
+INSERT INTO `sequel` VALUES (103,127),(108,110),(110,131),(127,130);
 /*!40000 ALTER TABLE `sequel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-24 15:53:21
+-- Dump completed on 2019-12-24 19:05:24
