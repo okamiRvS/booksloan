@@ -45,12 +45,12 @@
 					</td>
 					<td th:if="${book.listAutore.size() == 0}"></td>
 					<!-- Lista Sequel -->			
-					<td th:if="${book.listSequel.size() > 0}">
-						<p th:each="sequel : ${book.listSequel}">
+					<td th:if="${book.libriSuccessivi.size() > 0}">
+						<p th:each="sequel : ${book.libriSuccessivi}">
 							<span th:text="${sequel.titolo}">Sequel</span>
 						</p>
 					</td>
-					<td th:if="${book.listSequel.size() == 0}"></td>		
+					<td th:if="${book.libriSuccessivi.size() == 0}"></td>		
 					<!-- Azioni -->
 					<td>
 						<a th:href="@{'/edit/' + ${book.id}}">Modifica</a>

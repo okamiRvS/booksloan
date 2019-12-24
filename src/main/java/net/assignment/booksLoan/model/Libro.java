@@ -1,6 +1,8 @@
 package net.assignment.booksLoan.model;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +28,24 @@ public class Libro {
     		  inverseJoinColumns = @JoinColumn(name = "id_autore"))
     private List<Autore> listAutore;
     
+    /*
     @ManyToMany
     @JoinTable(
     		  name = "sequel", 
     		  joinColumns = @JoinColumn(name = "id_1"), 
     		  inverseJoinColumns = @JoinColumn(name = "id_2"))
     private List<Libro> listSequel;
+    */
+    
+    @ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="sequel",
+		joinColumns={@JoinColumn(name="id_1")},
+		inverseJoinColumns={@JoinColumn(name="id_2")})
+	private List<Libro> libriPrecedenti;
+
+	@ManyToMany(mappedBy="libriPrecedenti")
+	private List<Libro> libriSuccessivi;
+
 
     public Libro() {
     }
@@ -68,12 +82,22 @@ public class Libro {
 		this.listAutore = listAutore;
 	}
 
-	public List<Libro> getListSequel() {
-		return listSequel;
-		
+	public List<Libro> getLibriPrecedenti() {
+		return libriPrecedenti;
 	}
-	public void setListSequel(List<Libro> listSequel) {
-		this.listSequel = listSequel;		
+
+	public void setLibriPrecedenti(List<Libro> libriPrecedenti) {
+		this.libriPrecedenti = libriPrecedenti;
 	}
+
+	public List<Libro> getLibriSuccessivi() {
+		return libriSuccessivi;
+	}
+
+	public void setLibriSuccessivi(List<Libro> libriSuccessivi) {
+		this.libriSuccessivi = libriSuccessivi;
+	}
+
+	
 	
 }

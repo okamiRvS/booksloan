@@ -50,7 +50,7 @@ public class AppController {
 		
 		List<Libro> listBooks = bookService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
-		List<Libro> listSequel = new ArrayList<Libro>();
+		List<Libro> libriSuccessivi = new ArrayList<Libro>();
 		for (Libro libro : listBooks) {			
 			try {
 				listAutore = autoreService.trovaAutoreScritto(libro.getId());
@@ -60,8 +60,8 @@ public class AppController {
 			}
 			
 			try {
-				listSequel = bookService.trovaSequel(libro.getId());
-				libro.setListSequel(listSequel);
+				libriSuccessivi = bookService.trovaSequel(libro.getId());
+				libro.setLibriSuccessivi(libriSuccessivi);
 			} catch (Exception e2) {
 				System.out.println("Non ha sequel questo libro");
 			}
