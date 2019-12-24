@@ -258,6 +258,9 @@ public class AppController {
 	
 	@RequestMapping(value = "/save_sequel/{id}/{id_2}", method = RequestMethod.GET)
     public String saveSequelID(@PathVariable(name = "id") int id, @PathVariable(name = "id_2") int id_2) {
+		System.out.println(id);
+		System.out.println("*****");
+		System.out.println(id_2);
 		bookService.setLibroSoloSuSequel(id, id_2);
         return "redirect:/sequelAdm/" + id;
     }

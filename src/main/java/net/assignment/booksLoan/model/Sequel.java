@@ -2,18 +2,21 @@ package net.assignment.booksLoan.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity
+@IdClass(SequelKey.class)
 public class Sequel {
 
+	@Id
     private int id_1;
+	@Id
     private int id_2;
 
     public Sequel() {
 
     }
 
-    @Id
     public int getId_1() {
         return id_1;
     }

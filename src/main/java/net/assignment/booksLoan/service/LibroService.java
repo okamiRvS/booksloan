@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.assignment.booksLoan.model.Autore;
 import net.assignment.booksLoan.model.Libro;
 import net.assignment.booksLoan.repository.LibroRepository;
+import net.assignment.booksLoan.repository.SequelRepository;
 
 @Service
 @Transactional
@@ -16,6 +16,8 @@ public class LibroService {
 
     @Autowired
     private LibroRepository repo;
+    @Autowired
+    private SequelRepository s_repo;
 
     public List<Libro> listAll() {
         return repo.findAll();
@@ -41,7 +43,7 @@ public class LibroService {
 		return repo.trovaLibriDiversi(id);
 	}
 	public void setSequel(Libro libro, int id_libro) {
-		repo.setSequel(id_libro, saveAndFlush(libro).getId());
+		s_repo.setSequel(id_libro, saveAndFlush(libro).getId());
 	}   
 	
 	public Libro saveAndFlush(Libro a) {
@@ -49,7 +51,9 @@ public class LibroService {
 	}
 
 	public void setLibroSoloSuSequel(int id, int id_2) {
-		repo.setSequel(id, id_2);
-		
+		System.out.println(id);
+		System.out.println("*****");
+		System.out.println(id_2);
+		s_repo.setSequel(id, id_2);
 	}
 }
