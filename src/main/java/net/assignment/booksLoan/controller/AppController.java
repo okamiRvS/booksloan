@@ -231,4 +231,34 @@ public class AppController {
 		return "redirect:/";
 	}
 
+	@RequestMapping("/sequelAdm/{id}")
+	public String aggiungiSequel(Model model, @PathVariable(name = "id") int id) {
+		List<Libro> listLibro = bookService.trovaSequel(id);
+        model.addAttribute("listLibro", listLibro);
+        String book = copieService.TitoloId(id);
+        model.addAttribute("book", book);
+        return "sequelAdm";
+	}
+	
+	@RequestMapping("/nuovo_sequel/{id}")
+    public String showAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
+		List<Libro> listLibri = bookService.trovaLibriDiversi(id);
+        Libro libro = new Libro();
+        model.addAttribute("listLibri", listLibri);
+        model.addAttribute("libro", libro);
+        model.addAttribute("id_libro", id);
+        return "nuovo_sequel";
+    }
+	
+	@RequestMapping(value = "/save_sequel", method = RequestMethod.POST)
+    public String saveSequel(@ModelAttribute("autore") Libro libro, int id_libro) {
+	    bookService.setSequel(libro, id_libro);
+        return "redirect:/sequelAdm/" + id_libro;
+    }
+	
+	@RequestMapping(value = "/save_sequel/{id}/{id_2}", method = RequestMethod.GET)
+    public String saveSequelID(@PathVariable(name = "id") int id, @PathVariable(name = "id_2") int id_2) {
+		bookService.setLibroSoloSuSequel(id, id_2);
+        return "redirect:/sequelAdm/" + id;
+    }
 }

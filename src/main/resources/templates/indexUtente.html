@@ -27,6 +27,7 @@
 					<th>Titolo</th>
 					<th>Anno</th>
 					<th>Autore</th>
+					<th>Sequel</th>
 					<th>Azioni</th>
 				</tr>
 			</thead>
@@ -35,13 +36,21 @@
 					<td th:text="${book.id}">ID Libro</td>
 					<td th:text="${book.titolo}">Titolo</td>
 					<td th:text="${book.anno}">Anno</td>
+					<!-- Lista Autori -->
 					<td th:if="${book.listAutore.size() > 0}">
 						<p th:each="autore : ${book.listAutore}">
 							<span th:text="${autore.nome} + ' ' + ${autore.cognome}">Autore</span>
 						</p>
 					</td>
 					<td th:if="${book.listAutore.size() == 0}"></td>
-
+					<!-- Lista Sequel -->			
+					<td th:if="${book.listSequel.size() > 0}">
+						<p th:each="sequel : ${book.listSequel}">
+							<span th:text="${sequel.titolo}">Sequel</span>
+						</p>
+					</td>
+					<td th:if="${book.listSequel.size() == 0}"></td>		
+					<!-- Azioni -->
 					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a></td>
 				</tr>
 			</tbody>

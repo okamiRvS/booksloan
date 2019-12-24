@@ -36,5 +36,20 @@ public class LibroService {
 	public List<Libro> trovaSequel(int id) {
 		return repo.trovaSequel(id);
 	}
-   
+
+	public List<Libro> trovaLibriDiversi(int id) {
+		return repo.trovaLibriDiversi(id);
+	}
+	public void setSequel(Libro libro, int id_libro) {
+		repo.setSequel(id_libro, saveAndFlush(libro).getId());
+	}   
+	
+	public Libro saveAndFlush(Libro a) {
+		return repo.saveAndFlush(a);
+	}
+
+	public void setLibroSoloSuSequel(int id, int id_2) {
+		repo.setSequel(id, id_2);
+		
+	}
 }
