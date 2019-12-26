@@ -41,8 +41,8 @@ public class LibroService {
 	}
 	public void setSequel(Libro libro, int id_libro) {
 		repo.setSequel(id_libro, saveAndFlush(libro).getId());
-	}   
-	
+	}
+
 	public Libro saveAndFlush(Libro a) {
 		return repo.saveAndFlush(a);
 	}
@@ -53,4 +53,8 @@ public class LibroService {
 		System.out.println(id_2);
 		repo.setSequel(id, id_2);
 	}
+
+	public void deleteSequel(int id) {
+        repo.deleteSequel(id);
+    }
 }

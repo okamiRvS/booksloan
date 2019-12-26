@@ -47,18 +47,18 @@ public class AppController {
 			error = true;
 		}
 		model.addAttribute("error", error);
-		
+
 		List<Libro> listBooks = bookService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
 		List<Libro> libriSuccessivi = new ArrayList<Libro>();
-		for (Libro libro : listBooks) {			
+		for (Libro libro : listBooks) {
 			try {
 				listAutore = autoreService.trovaAutoreScritto(libro.getId());
 				libro.setListAutore(listAutore);
 			} catch (Exception e) {
 				System.out.println("Non ha autori questo libro");
 			}
-			
+
 			try {
 				libriSuccessivi = bookService.trovaSequel(libro.getId());
 				libro.setLibriSuccessivi(libriSuccessivi);
@@ -97,13 +97,13 @@ public class AppController {
 	    autoreService.setAutoreScritto(autore, id_libro);
         return "redirect:/autoriAdm/" + id_libro;
     }
-	
+
 	@RequestMapping(value = "/save_autore/{id}/{id_autore}", method = RequestMethod.GET)
     public String saveAutoreID(@PathVariable(name = "id") int id, @PathVariable(name = "id_autore") int id_autore) {
 	    autoreService.setAutoreSoloSuScritto(id, id_autore);
         return "redirect:/autoriAdm/" + id;
     }
-	
+
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_book");
@@ -208,7 +208,7 @@ public class AppController {
         model.addAttribute("book", book);
         return "autoriAdm";
 	}
-	
+
 	@RequestMapping("/nuovo_autore/{id}")
     public String showAggiungiAutoriPage(Model model, @PathVariable(name = "id") int id) {
 		List<Autore> listAutori = autoreService.trovaAutoriDiversi(id);
@@ -218,13 +218,19 @@ public class AppController {
         model.addAttribute("id_libro", id);
         return "nuovo_autore";
     }
-	
+
 	@RequestMapping("/elimina_autore/{id_autore}")
 	public String eliminaAutore(@PathVariable(name = "id_autore") int id_autore) {
 		autoreService.deleteScritto(id_autore);
 		return "redirect:/";
 	}
-	
+
+	@RequestMapping("/elimina_sequel/{id}")
+    public String eliminaSequel(@PathVariable(name = "id") int id) {
+        bookService.deleteSequel(id);
+        return "redirect:/";
+    }
+
 	@RequestMapping("/elimina_copia/{isbn}")
 	public String eliminaCopia(@PathVariable(name = "isbn") long isbn) {
 		copieService.delete(isbn);
@@ -239,7 +245,7 @@ public class AppController {
         model.addAttribute("book", book);
         return "sequelAdm";
 	}
-	
+
 	@RequestMapping("/nuovo_sequel/{id}")
     public String showAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
 		List<Libro> listLibri = bookService.trovaLibriDiversi(id);
@@ -249,13 +255,13 @@ public class AppController {
         model.addAttribute("id_libro", id);
         return "nuovo_sequel";
     }
-	
+
 	@RequestMapping(value = "/save_sequel", method = RequestMethod.POST)
     public String saveSequel(@ModelAttribute("autore") Libro libro, int id_libro) {
 	    bookService.setSequel(libro, id_libro);
         return "redirect:/sequelAdm/" + id_libro;
     }
-	
+
 	@RequestMapping(value = "/save_sequel/{id}/{id_2}", method = RequestMethod.GET)
     public String saveSequelID(@PathVariable(name = "id") int id, @PathVariable(name = "id_2") int id_2) {
 		System.out.println(id);
