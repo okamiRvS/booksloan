@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import net.assignment.booksLoan.service.UserDetailsServiceImpl;
+import net.assignment.booksLoan.service.DettagliUtenteImplService;
 
 
 @Configuration
@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 	
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    DettagliUtenteImplService userDetailsService;
 	
     //Registrare il servizio per gli utenti e il codificatore di password
     @Autowired

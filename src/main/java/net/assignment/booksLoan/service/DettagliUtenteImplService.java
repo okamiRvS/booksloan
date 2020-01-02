@@ -9,13 +9,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import net.assignment.booksLoan.model.Utente;
-import net.assignment.booksLoan.repository.UserRepository;
+import net.assignment.booksLoan.repository.UtenteRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class DettagliUtenteImplService implements UserDetailsService {
 
 	@Autowired
-	UserRepository userRepository;
+	UtenteRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String n_tessera) throws UsernameNotFoundException {

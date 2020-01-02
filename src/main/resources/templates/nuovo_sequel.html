@@ -28,14 +28,14 @@
 			<tr th:each="libro : ${listLibri}">
 				<td th:text="${libro.titolo}">ISBN</td>
 				<td th:text="${libro.anno}">ID</td>
-				<td><a th:href="@{'/save_sequel/'  + ${id_libro} + '/' + ${libro.id}}">Aggiungi</a></td>
+				<td><a th:href="@{'/salva_sequel/'  + ${id_libro} + '/' + ${libro.id}}">Aggiungi</a></td>
 			</tr>
 		</tbody>
 	</table>
 
 	<br />
 	<p>Se non esiste il sequel crealo:</p>
-		<form action="#" th:action="@{/save_sequel}" th:object="${libro}"
+		<form action="#" th:action="@{/salva_sequel}" th:object="${libro}"
 			method="post">
 
 			<input type="hidden" th:value="${id_libro}" name="id_libro">

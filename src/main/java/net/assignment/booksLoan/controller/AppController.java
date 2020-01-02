@@ -27,7 +27,7 @@ import net.assignment.booksLoan.service.PrestitoService;
 @Controller
 public class AppController {
 	@Autowired
-	private LibroService bookService;
+	private LibroService libroService;
 	@Autowired
 	private CopieService copieService;
 	@Autowired
@@ -48,10 +48,10 @@ public class AppController {
 		}
 		model.addAttribute("error", error);
 
-		List<Libro> listBooks = bookService.listAll();
+		List<Libro> listaLibri = libroService.listAll();
 		List<Autore> listAutore = new ArrayList<Autore>();
 		List<Libro> libriSuccessivi = new ArrayList<Libro>();
-		for (Libro libro : listBooks) {
+		for (Libro libro : listaLibri) {
 			try {
 				listAutore = autoreService.trovaAutoreScritto(libro.getId());
 				libro.setListAutore(listAutore);
@@ -60,13 +60,13 @@ public class AppController {
 			}
 
 			try {
-				libriSuccessivi = bookService.trovaSequel(libro.getId());
+				libriSuccessivi = libroService.trovaSequel(libro.getId());
 				libro.setLibriSuccessivi(libriSuccessivi);
 			} catch (Exception e2) {
 				System.out.println("Non ha sequel questo libro");
 			}
 		}
-		model.addAttribute("listBooks", listBooks);
+		model.addAttribute("listaLibri", listaLibri);
 
 		// Get ruolo dell'utente in sessione
 		String ruolo = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
@@ -77,14 +77,14 @@ public class AppController {
 		}
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("book") Libro book) {
-		bookService.save(book);
+	@RequestMapping(value = "/salva", method = RequestMethod.POST)
+	public String salvaLibro(@ModelAttribute("libro") Libro libro) {
+		libroService.save(libro);
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/save_copia", method = RequestMethod.POST)
-	public String saveCopia(@ModelAttribute("copia") Copia copia) {
+	@RequestMapping(value = "/salva_copia", method = RequestMethod.POST)
+	public String salvaCopia(@ModelAttribute("copia") Copia copia) {
 		if(copieService.existsById(copia.getIsbn())) {
 			return "redirect:/nuova_copia/" + copia.getId() + "?error";
 		}
@@ -92,37 +92,37 @@ public class AppController {
 	    return "redirect:/";
 	}
 
-	@RequestMapping(value = "/save_autore", method = RequestMethod.POST)
-    public String saveAutore(@ModelAttribute("autore") Autore autore, int id_libro) {
+	@RequestMapping(value = "/salva_autore", method = RequestMethod.POST)
+    public String salvaAutore(@ModelAttribute("autore") Autore autore, int id_libro) {
 	    autoreService.setAutoreScritto(autore, id_libro);
         return "redirect:/autoriAdm/" + id_libro;
     }
 
-	@RequestMapping(value = "/save_autore/{id}/{id_autore}", method = RequestMethod.GET)
-    public String saveAutoreID(@PathVariable(name = "id") int id, @PathVariable(name = "id_autore") int id_autore) {
+	@RequestMapping(value = "/salva_autore/{id}/{id_autore}", method = RequestMethod.GET)
+    public String salvaAutoreID(@PathVariable(name = "id") int id, @PathVariable(name = "id_autore") int id_autore) {
 	    autoreService.setAutoreSoloSuScritto(id, id_autore);
         return "redirect:/autoriAdm/" + id;
     }
 
-	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_book");
-		Libro book = bookService.get(id);
-		mav.addObject("book", book);
+	@RequestMapping("/modifica/{id}")
+	public ModelAndView mostraModificaLibro(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("modifica_libro");
+		Libro l = libroService.get(id);
+		mav.addObject("libro", l);
 		return mav;
 	}
 
 	@RequestMapping("/nuovo_libro")
-	public String showAggiungiLibroPage(Model model) {
+	public String mostraAggiungiLibro(Model model) {
 		Libro libro = new Libro();
-		model.addAttribute("book", libro);
+		model.addAttribute("libro", libro);
 		return "nuovo_libro";
 	}
 
-	@RequestMapping("/delete/{id}")
-	public String deleteProducte(@PathVariable(name = "id") int id) {
+	@RequestMapping("/elimina/{id}")
+	public String eliminaId(@PathVariable(name = "id") int id) {
 		try {
-			bookService.delete(id);
+			libroService.delete(id);
 		} catch(Exception e) {
 			return "redirect:/?error";
 		}
@@ -136,11 +136,11 @@ public class AppController {
 	}
 
 	@RequestMapping("/copie/{id}")
-	public String showProductCopies(Model model, @PathVariable(name = "id") int id) {
+	public String mostraCopie(Model model, @PathVariable(name = "id") int id) {
 		List<Copia> listCopie = copieService.CopieId(id);
 		model.addAttribute("listCopie", listCopie);
-		String book = copieService.TitoloId(id);
-		model.addAttribute("book", book);
+		String libro = copieService.TitoloId(id);
+		model.addAttribute("libro", libro);
 
 		return "copie";
 
@@ -182,21 +182,21 @@ public class AppController {
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
 		List<Copia> listCopie = copieService.CopieId(id);
         model.addAttribute("listCopie", listCopie);
-        String book = copieService.TitoloId(id);
-        model.addAttribute("book", book);
+        String libro = copieService.TitoloId(id);
+        model.addAttribute("libro", libro);
         return "copieAdm";
 	}
 
 	@RequestMapping("/nuova_copia/{id}")
-	public String showAggiungiCopiaPage(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
-		Boolean error = false;
+	public String mostraAggiungiCopia(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
+		Boolean errore = false;
 		if(param != null) {
-			error = true;
+			errore = true;
 		}
 		Copia copia = new Copia();
 	    copia.setId(id);
 	    model.addAttribute("copia", copia);
-	    model.addAttribute("error", error);
+	    model.addAttribute("error", errore);
 	    return "nuova_copia";
 	}
 
@@ -204,13 +204,13 @@ public class AppController {
 	public String aggiungiAutore(Model model, @PathVariable(name = "id") int id) {
 		List<Autore> listAutori = autoreService.trovaAutoreScritto(id);
         model.addAttribute("listAutori", listAutori);
-        String book = copieService.TitoloId(id);
-        model.addAttribute("book", book);
+        String libro = copieService.TitoloId(id);
+        model.addAttribute("libro", libro);
         return "autoriAdm";
 	}
 
 	@RequestMapping("/nuovo_autore/{id}")
-    public String showAggiungiAutoriPage(Model model, @PathVariable(name = "id") int id) {
+    public String mostraAggiungiAutore(Model model, @PathVariable(name = "id") int id) {
 		List<Autore> listAutori = autoreService.trovaAutoriDiversi(id);
         Autore autore = new Autore();
         model.addAttribute("listAutori", listAutori);
@@ -227,7 +227,7 @@ public class AppController {
 
 	@RequestMapping("/elimina_sequel/{id}")
     public String eliminaSequel(@PathVariable(name = "id") int id) {
-        bookService.deleteSequel(id);
+        libroService.deleteSequel(id);
         return "redirect:/";
     }
 
@@ -239,16 +239,16 @@ public class AppController {
 
 	@RequestMapping("/sequelAdm/{id}")
 	public String aggiungiSequel(Model model, @PathVariable(name = "id") int id) {
-		List<Libro> listLibro = bookService.trovaSequel(id);
+		List<Libro> listLibro = libroService.trovaSequel(id);
         model.addAttribute("listLibro", listLibro);
-        String book = copieService.TitoloId(id);
-        model.addAttribute("book", book);
+        String libro = copieService.TitoloId(id);
+        model.addAttribute("libro", libro);
         return "sequelAdm";
 	}
 
 	@RequestMapping("/nuovo_sequel/{id}")
-    public String showAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
-		List<Libro> listLibri = bookService.trovaLibriDiversi(id);
+    public String mostraAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
+		List<Libro> listLibri = libroService.trovaLibriDiversi(id);
         Libro libro = new Libro();
         model.addAttribute("listLibri", listLibri);
         model.addAttribute("libro", libro);
@@ -256,18 +256,18 @@ public class AppController {
         return "nuovo_sequel";
     }
 
-	@RequestMapping(value = "/save_sequel", method = RequestMethod.POST)
+	@RequestMapping(value = "/salva_sequel", method = RequestMethod.POST)
     public String saveSequel(@ModelAttribute("autore") Libro libro, int id_libro) {
-	    bookService.setSequel(libro, id_libro);
+	    libroService.setSequel(libro, id_libro);
         return "redirect:/sequelAdm/" + id_libro;
     }
 
-	@RequestMapping(value = "/save_sequel/{id}/{id_2}", method = RequestMethod.GET)
+	@RequestMapping(value = "/salva_sequel/{id}/{id_2}", method = RequestMethod.GET)
     public String saveSequelID(@PathVariable(name = "id") int id, @PathVariable(name = "id_2") int id_2) {
 		System.out.println(id);
 		System.out.println("*****");
 		System.out.println(id_2);
-		bookService.setLibroSoloSuSequel(id, id_2);
+		libroService.setLibroSoloSuSequel(id, id_2);
         return "redirect:/sequelAdm/" + id;
     }
 }

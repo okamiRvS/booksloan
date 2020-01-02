@@ -32,26 +32,26 @@
 				</tr>
 			</thead>
 			<tbody id="myTable">
-				<tr th:each="book : ${listBooks}">
-					<td th:text="${book.id}">ID Libro</td>
-					<td th:text="${book.titolo}">Titolo</td>
-					<td th:text="${book.anno}">Anno</td>
+				<tr th:each="libro : ${listaLibri}">
+					<td th:text="${libro.id}">ID Libro</td>
+					<td th:text="${libro.titolo}">Titolo</td>
+					<td th:text="${libro.anno}">Anno</td>
 					<!-- Lista Autori -->
-					<td th:if="${book.listAutore.size() > 0}">
-						<p th:each="autore : ${book.listAutore}">
+					<td th:if="${libro.listAutore.size() > 0}">
+						<p th:each="autore : ${libro.listAutore}">
 							<span th:text="${autore.nome} + ' ' + ${autore.cognome}">Autore</span>
 						</p>
 					</td>
-					<td th:if="${book.listAutore.size() == 0}"></td>
+					<td th:if="${libro.listAutore.size() == 0}"></td>
 					<!-- Lista Sequel -->			
-					<td th:if="${book.libriSuccessivi.size() > 0}">
-						<p th:each="sequel : ${book.libriSuccessivi}">
+					<td th:if="${libro.libriSuccessivi.size() > 0}">
+						<p th:each="sequel : ${libro.libriSuccessivi}">
 							<span th:text="${sequel.titolo}">Sequel</span>
 						</p>
 					</td>
-					<td th:if="${book.libriSuccessivi.size() == 0}"></td>		
+					<td th:if="${libro.libriSuccessivi.size() == 0}"></td>		
 					<!-- Azioni -->
-					<td><a th:href="@{'/copie/' + ${book.id}}">Visualizza copie</a></td>
+					<td><a th:href="@{'/copie/' + ${libro.id}}">Visualizza copie</a></td>
 				</tr>
 			</tbody>
 		</table>
