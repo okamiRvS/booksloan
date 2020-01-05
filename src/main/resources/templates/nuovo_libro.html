@@ -3,6 +3,11 @@
     xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
+<!-- Jquery -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/js/eccezioni.js}"></script>
+<!--CSS Personale-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/mystyle.css}">
 <title>Crea Nuovo Libro</title>
 </head>
 <body>
@@ -15,11 +20,11 @@
             <table border="0" cellpadding="10">
                  <tr>
                     <td>Titolo libro:</td>
-                    <td><input type="text" th:field="*{titolo}" /></td>
+                    <td><input type="text" th:field="*{titolo}" required="required" /></td>
                 </tr>   
                  <tr>
                     <td>Anno:</td>
-                    <td><input type="text" th:field="*{anno}" /></td>
+                    <td><input id="anno" type="text" th:field="*{anno}" required="required" /></td>
                 </tr>                   
                 <tr>
                     <td colspan="2"><button type="submit">Aggiungi</button> </td>
