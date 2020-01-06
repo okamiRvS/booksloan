@@ -7,15 +7,14 @@
 </head>
 <body>
 	<div align="center">
-		<h1>
-			
-		</h1>
-
+		<h1>Le tue prenotazioni</h1>
+		<h3 th:text="@{'Il numero della tua tessera: ' + ${listaPrenotazioni[0].n_tessera}}"></h3>
+		<br />
 		<table border="1" cellpadding="10">
 			<thead>
 				<tr>
 					<th>ISBN</th>
-					<th>n_tessera</th>
+					<th>Titolo</th>
 					<th>Data inizio</th>
 					<th>Data consegna</th>
 					<th>Azioni</th>
@@ -24,11 +23,11 @@
 			</thead>
 			<tbody>
 				<tr th:each="prenotazione : ${listaPrenotazioni}">
-					<td th:text="${prenotazione.isbn}">ISBN</td>
-					<td th:text="${prenotazione.n_tessera}">Numero Tessera</td>
+					<td th:text="${prenotazione.copia.isbn}">ISBN</td>
+					<td th:text="${prenotazione.copia.libro.titolo}">titolo</td>
 					<td th:text="${prenotazione.data_inizio}">Data Inizio</td>
 					<td th:text="${prenotazione. data_consegna}">Data Consegna</td>
-					<td><a th:href="@{'/restituisci/' + ${prenotazione.isbn}}">Restituisci Libro</a></td>
+					<td><a th:href="@{'/restituisci/' + ${prenotazione.copia.isbn}}">Restituisci Libro</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -48,15 +48,12 @@
 				</tr>
 				<tr>
 					<td>Anno:</td>
-					<td><input id="anno" type="text" th:field="*{anno}" required="required" /></td>
+					<td><input id="anno" type="text" th:field="*{anno}" maxlength="4" required="required" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button type="submit">Aggiungi</button></td>
 				</tr>
 			</table>
-		</form>
-		<form th:action="@{'/index/'}" method="post">
-			<input type="submit" value="Torna Indietro" />
 		</form>
 	</div>
 </body>

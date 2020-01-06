@@ -12,8 +12,8 @@
 </head>
 <body>
 	<div align="center">
-		<h1 th:text="${book}"></h1>
-		<form th:action="@{'/nuovo_sequel/' + ${id}}" method="post">
+		<h1 th:text="${libro.titolo}"></h1>
+		<form th:action="@{'/nuovo_sequel/' + ${libro.id}}" method="post">
 			<input type="submit" value="Aggiungi Sequel" />
 		</form>
 		<br />
@@ -30,12 +30,12 @@
 				</tr>
 			</thead>
 			<tbody id="myTable">
-				<tr th:each="libro : ${listLibro}">
-					<td th:text="${libro.id}">ID Libro</td>
-					<td th:text="${libro.titolo}">Titolo</td>
-					<td th:text="${libro.anno}">Anno</td>
+				<tr th:each="sequel : ${libro.libriSuccessivi}">
+					<td th:text="${sequel.id}">ID Libro</td>
+					<td th:text="${sequel.titolo}">Titolo</td>
+					<td th:text="${sequel.anno}">Anno</td>
 					<td>
-						<a th:href="@{'/elimina_sequel/' + ${libro.id}}">Cancella</a>
+						<a th:href="@{'/elimina_sequel/' + ${sequel.id}}">Cancella</a>
 					</td>
 				</tr>
 			</tbody>

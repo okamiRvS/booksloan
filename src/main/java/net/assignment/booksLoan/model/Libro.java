@@ -1,14 +1,15 @@
 package net.assignment.booksLoan.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -17,36 +18,35 @@ import javax.persistence.JoinColumn;
 public class Libro {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
     private int id;
+	@Column(name = "titolo")
     private String titolo;
+	@Column(name = "anno")
     private String anno;
     
     @ManyToMany
     @JoinTable(
-    		  name = "scritto", 
-    		  joinColumns = @JoinColumn(name = "id"), 
-    		  inverseJoinColumns = @JoinColumn(name = "id_autore"))
+			name = "scritto", 
+			joinColumns = @JoinColumn(name = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "id_autore"))
     private List<Autore> listAutore;
     
     /*
-    @ManyToMany
-    @JoinTable(
-    		  name = "sequel", 
-    		  joinColumns = @JoinColumn(name = "id_1"), 
-    		  inverseJoinColumns = @JoinColumn(name = "id_2"))
-    private List<Libro> listSequel;
-    */
-    
-    @ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="sequel",
-		joinColumns={@JoinColumn(name="id_1")},
-		inverseJoinColumns={@JoinColumn(name="id_2")})
+    @ManyToMany(mappedBy="libriSuccessivi")
 	private List<Libro> libriPrecedenti;
-
-	@ManyToMany(mappedBy="libriPrecedenti")
+    */
+	
+    @ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(
+			name="sequel",
+			joinColumns={@JoinColumn(name="id_1")},
+			inverseJoinColumns={@JoinColumn(name="id_2")})
 	private List<Libro> libriSuccessivi;
 
-
+	@OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    private List<Copia> listaCopie;
+	
     public Libro() {
     }
 
@@ -82,14 +82,6 @@ public class Libro {
 		this.listAutore = listAutore;
 	}
 
-	public List<Libro> getLibriPrecedenti() {
-		return libriPrecedenti;
-	}
-
-	public void setLibriPrecedenti(List<Libro> libriPrecedenti) {
-		this.libriPrecedenti = libriPrecedenti;
-	}
-
 	public List<Libro> getLibriSuccessivi() {
 		return libriSuccessivi;
 	}
@@ -98,6 +90,12 @@ public class Libro {
 		this.libriSuccessivi = libriSuccessivi;
 	}
 
-	
+	public List<Copia> getListaCopie() {
+		return listaCopie;
+	}
+
+	public void setListaCopie(List<Copia> listaCopie) {
+		this.listaCopie = listaCopie;
+	}
 	
 }

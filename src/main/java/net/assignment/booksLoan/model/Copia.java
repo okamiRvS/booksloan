@@ -2,16 +2,13 @@ package net.assignment.booksLoan.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name="copia", schema="booksloan")
@@ -21,16 +18,16 @@ public class Copia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "isbn")
     private Long isbn;
-	@Column(name = "id", nullable=false)
-    private int id;
+	@Column(name = "disponibilita")
     private boolean disponibilita;
 
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id", insertable=false, updatable=false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Libro libro;
-    
+	@OneToOne(mappedBy = "copia")
+    private Prestito prestito;
+
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Libro libro;
+	
     public Copia() {
     }
 
@@ -42,14 +39,6 @@ public class Copia {
         this.isbn = isbn;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public boolean getDisponibilita() {
         return disponibilita;
     }
@@ -58,4 +47,18 @@ public class Copia {
         this.disponibilita = disponibilita;
     }
 
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+
+	@Override
+	public String toString() {
+		return "Copia [isbn=" + isbn + ", disponibilita=" + disponibilita + "]";
+	}
+
+    
 }

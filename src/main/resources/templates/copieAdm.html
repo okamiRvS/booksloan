@@ -12,8 +12,8 @@
 </head>
 <body>
 	<div align="center">
-		<h1 th:text="${libro}"></h1>
-		<form th:action="@{'/nuova_copia/' + ${id}}" method="post">
+		<h1 th:text="${libro.titolo}"></h1>
+		<form th:action="@{'/nuova_copia/' + ${libro.id}}" method="post">
 			<input type="submit" value="Aggiungi Copia" />
 		</form>
 		<br />
@@ -30,10 +30,11 @@
 				</tr>
 			</thead>
 			<tbody id="myTable">
-				<tr th:each="copia : ${listCopie}">
+				<tr th:each="copia : ${libro.listaCopie}">
 					<td th:text="${copia.isbn}">ISBN</td>
-					<td th:text="${copia.id}">ID</td>
-					<td th:text="${copia.disponibilita}">Disponibilità</td>
+					<td th:text="${copia.libro.id}">ID</td>
+					<td th:if="${copia.disponibilita} == true" th:text="@{'Disponibile'}">Disponibilità</td>
+					<td th:if="${copia.disponibilita} == false" th:text="@{'Non disponibile'}">Disponibilità</td>
 					
 					<td th:if="${copia.disponibilita} == true"><a th:href="@{'/elimina_copia/' + ${copia.isbn}}">Elimina</a></td>
 					<td th:if="${copia.disponibilita} == false">Nessuna azione possibile</td>

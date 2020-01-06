@@ -23,12 +23,9 @@ public class CopieService {
         return repo.findCopieById(id);
     }
    
-    public void setCopia(Long isbn, int id, boolean disponibilita) {
-   		repo.setCopia(isbn, id, disponibilita);
-    }
-    
-    public String TitoloId(int id){
-        return repo.findTitoloById(id);
+    // ok
+    public void setCopia(Copia copia) {
+   		repo.setCopia(copia.getIsbn(), copia.getLibro().getId(), copia.getDisponibilita());
     }
 
     public void prenota(Long isbn) {
@@ -47,6 +44,7 @@ public class CopieService {
     	repo.restituisciISBN(isbn);
     }
     
+    // ok
     public boolean existsById(Long id) {
     	return repo.existsById(id);
     }

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Prestito;
 
 @Repository
@@ -17,6 +16,6 @@ public interface PrestitoRepository extends JpaRepository<Prestito, Integer> {
     public List<Prestito> prenotazioni(int n_tessera);
 	
 	@Modifying
-	@Query(value = "DELETE FROM Prestito WHERE isbn = ?1 and n_tessera = ?2", nativeQuery = true)
-	public void deleteByKey(Long isbn, int n_tessera);
+	@Query(value = "DELETE FROM Prestito WHERE isbn = ?1", nativeQuery = true)
+	public void deleteByKey(Long isbn);
 }

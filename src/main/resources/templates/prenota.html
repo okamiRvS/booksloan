@@ -11,28 +11,6 @@
 			<span th:text="${username}" th:remove="tag"></span>
 			<span> hai prenotato un libro!</span>
 		</h1>
-		<!-- 
-		<table border="1" cellpadding="10">
-			<thead>
-				<tr>
-					<th>ISBN</th>
-					<th>Nome Libro</th>
-					<th>Data prestito</th>
-					<th>Data consegna</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="copia : ${listCopie}">
-					<td th:text="${copia.isbn}">ISBN</td>
-					<td th:text="${copia.id}">ID</td>
-					<td th:text="${copia.disponibilita}">Disponbilità</td>
-
-					<td><a th:href="@{'/prenota/' + ${copia.isbn}}">Prenota</a></td>
-
-				</tr>
-			</tbody>
-		</table>
-		 -->
 		<br />
 		<form th:action="@{'/index/'}" method="post">
 			<input type="submit" value="Torna Indietro" />

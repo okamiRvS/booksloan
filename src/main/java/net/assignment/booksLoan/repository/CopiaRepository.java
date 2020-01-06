@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import net.assignment.booksLoan.model.Copia;
-import net.assignment.booksLoan.model.Prestito;
 
 @Repository
 public interface CopiaRepository extends JpaRepository<Copia, Long> {
@@ -16,9 +15,6 @@ public interface CopiaRepository extends JpaRepository<Copia, Long> {
 	// https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-introduction-to-query-methods/
 	@Query(value = "SELECT * FROM Copia c JOIN Libro l on c.id = l.id where c.id = ?1", nativeQuery = true)
 	public List<Copia> findCopieById(int id);
-
-	@Query(value = "SELECT DISTINCT l.titolo FROM Copia c JOIN Libro l on c.id = l.id where c.id = ?1", nativeQuery = true)
-	public String findTitoloById(int id);
 
 	@Modifying
 	@Query(value = "UPDATE Copia SET disponibilita = 0 WHERE isbn = ?1", nativeQuery = true)

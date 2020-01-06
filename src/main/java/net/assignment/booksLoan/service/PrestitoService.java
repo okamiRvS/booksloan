@@ -25,8 +25,8 @@ public class PrestitoService {
 	        return repo.prenotazioni(n_tessera);
 	  }
 	 
-	 public void delete(Long isbn, int n_tessera) {
-	        repo.deleteByKey(isbn, n_tessera);
+	 public void delete(Long isbn) {
+	        repo.deleteByKey(isbn);
 	  }
 	    
 }
