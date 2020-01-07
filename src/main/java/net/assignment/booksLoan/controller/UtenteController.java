@@ -24,16 +24,16 @@ import net.assignment.booksLoan.service.LibroService;
 import net.assignment.booksLoan.service.PrestitoService;
 
 @Controller
-public class AppController {
+public class UtenteController {
 	
 	@Autowired
 	private LibroService libroService;
-	@Autowired
-	private CopieService copieService;
-	@Autowired
-	private PrestitoService prestitoService;
-	@Autowired
-	private AutoreService autoreService;
+	//@Autowired
+	//private CopieService copieService;
+	//@Autowired
+	//private PrestitoService prestitoService;
+	//@Autowired
+	//private AutoreService autoreService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -60,12 +60,15 @@ public class AppController {
 		}
 	}
 
+	/*
 	@RequestMapping(value = "/salva", method = RequestMethod.POST)
 	public String salvaLibro(@ModelAttribute("libro") Libro libro) {
 		libroService.save(libro);
 		return "redirect:/";
 	}
-
+	*/
+	
+	/*
 	@RequestMapping(value = "/salva_copia", method = RequestMethod.POST)
 	public String salvaCopia(@ModelAttribute("copia") Copia copia) {
 		if(copieService.existsById(copia.getIsbn())) {
@@ -75,7 +78,9 @@ public class AppController {
 	    copieService.setCopia(copia);
 	    return "redirect:/";
 	}
+	*/
 
+	/*
 	@RequestMapping(value = "/salva_autore", method = RequestMethod.POST)
     public String salvaAutore(@ModelAttribute("autore") Autore autore, int id_libro) {
 	    autoreService.setAutoreScritto(autore, id_libro);
@@ -87,7 +92,9 @@ public class AppController {
 	    autoreService.setAutoreSoloSuScritto(id, id_autore);
         return "redirect:/autoriAdm/" + id;
     }
-	// ok
+	*/
+	
+	/*
 	@RequestMapping(value = "/salva_sequel", method = RequestMethod.POST)
     public String saveSequel(@ModelAttribute("autore") Libro libro, int id_libro) {
 	    libroService.setSequel(libro, id_libro);
@@ -99,8 +106,7 @@ public class AppController {
 		libroService.setLibroSoloSuSequel(id, id_2);
         return "redirect:/sequelAdm/" + id;
     }
-
-	// ok
+ 
 	@RequestMapping("/modifica/{id}")
 	public ModelAndView mostraModificaLibro(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("modifica_libro");
@@ -108,7 +114,9 @@ public class AppController {
 		mav.addObject("libro", l);
 		return mav;
 	}
+	*/
 
+	/*
 	@RequestMapping("/copie/{id}")
 	public String mostraCopie(Model model, @PathVariable(name = "id") int id) {
 		Libro libro = libroService.get(id);
@@ -140,6 +148,7 @@ public class AppController {
     }
 
 	// ok
+	
 	@RequestMapping("/prenotazioni/")
 	public String prenotazioni(Model model) {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -149,15 +158,19 @@ public class AppController {
         return "prenotazioni";
     }
 
+*/
 	// ok
+	/*
 	@RequestMapping("/nuovo_libro")
 	public String mostraAggiungiLibro(Model model) {
 		Libro libro = new Libro();
 		model.addAttribute("libro", libro);
 		return "nuovo_libro";
 	}
+	*/
 
 	// ok
+	/*
 	@RequestMapping("/nuova_copia/{id}")
 	public String mostraAggiungiCopia(Model model, @RequestParam(value="error", required=false) String param, @PathVariable(name = "id") int id) {
 		Boolean errore = false;
@@ -170,7 +183,9 @@ public class AppController {
 	    model.addAttribute("error", errore);
 	    return "nuova_copia";
 	}
+	*/
 
+	/*
 	@RequestMapping("/nuovo_autore/{id}")
     public String mostraAggiungiAutore(Model model, @PathVariable(name = "id") int id) {
 		List<Autore> listAutori = autoreService.trovaAutoriDiversi(id);
@@ -180,8 +195,9 @@ public class AppController {
         model.addAttribute("id_libro", id);
         return "nuovo_autore";
     }
-	
+	*/
 	// ok
+	/*
 	@RequestMapping("/nuovo_sequel/{id}")
     public String mostraAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
 		List<Libro> listLibri = libroService.trovaLibriDiversi(id);
@@ -202,26 +218,34 @@ public class AppController {
 
 		return "redirect:/";
 	}
+	*/
+	
+	/*
 	
 	@RequestMapping("/elimina_copia/{isbn}")
 	public String eliminaCopia(@PathVariable(name = "isbn") long isbn) {
 		copieService.delete(isbn);
 		return "redirect:/";
 	}
+	*/
 
+	/*
 	@RequestMapping("/elimina_autore/{id_autore}")
 	public String eliminaAutore(@PathVariable(name = "id_autore") int id_autore) {
 		autoreService.deleteScritto(id_autore);
 		return "redirect:/";
 	}
 
+	*/
+	/*
 	@RequestMapping("/elimina_sequel/{id}")
     public String eliminaSequel(@PathVariable(name = "id") int id) {
         libroService.deleteSequel(id);
         return "redirect:/";
     }
-	
+	*/
 	// ok
+	/*
 	@RequestMapping("/copieAdm/{id}")
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
 		Libro libro = libroService.get(id);
@@ -229,8 +253,9 @@ public class AppController {
 		
         return "copieAdm";
 	}
-	
+	*/
 	// ok
+	/*
 	@RequestMapping("/autoriAdm/{id}")
 	public String aggiungiAutore(Model model, @PathVariable(name = "id") int id) {
 		Libro libro = libroService.get(id);
@@ -238,8 +263,9 @@ public class AppController {
 		
         return "autoriAdm";
 	}
-	
+	*/
 	// ok
+	/*
 	@RequestMapping("/sequelAdm/{id}")
 	public String aggiungiSequel(Model model, @PathVariable(name = "id") int id) {
 		Libro libro = libroService.get(id);
@@ -247,4 +273,5 @@ public class AppController {
 		
         return "sequelAdm";
 	}
+	*/
 }
