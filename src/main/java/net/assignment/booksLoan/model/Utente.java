@@ -1,14 +1,18 @@
 package net.assignment.booksLoan.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 
 @Entity
-@Table(name="utente", schema="booksloan")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="ruolo")
 public class Utente {
 
     @Id
@@ -31,7 +35,7 @@ public class Utente {
     @Column
     private String e_mail;
 
-    @Column
+    @Column(insertable = false, updatable = false)
     private String ruolo;
 
     public Utente() {

@@ -1,6 +1,7 @@
 package net.assignment.booksLoan.service;
 
 import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,13 +26,18 @@ public class DettagliUtenteImplService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("Username not found");
 		}
-		
+
 		// Creiamo l'oggetto UserDetails che sarà in sessione e lo restituiamo
 		return new org.springframework.security.core.userdetails.User(
 				user.getUsername(),
-				user.getPassword(), 
+				user.getPassword(),
 				Collections.singleton(
 						new SimpleGrantedAuthority(user.getRuolo())));
+	}
+
+	public Utente findAdmByN_tessera(int n_tessera) {
+
+	    return userRepository.findAdmByN_tessera(n_tessera);
 	}
 
 }

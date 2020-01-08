@@ -53,11 +53,11 @@
 					<td th:if="${libro.libriSuccessivi.size() == 0}"></td>		
 					<!-- Azioni -->
 					<td>
-						<a th:href="@{'/modifica/' + ${libro.id}}">Modifica</a>
-						<a th:href="@{'/elimina/' + ${libro.id}}">  Cancella</a>
 						<a th:href="@{'/copieAdm/' + ${libro.id}}"> Copie</a>
 						<a th:href="@{'/autoriAdm/' + ${libro.id}}"> Autori</a>
 						<a th:href="@{'/sequelAdm/' + ${libro.id}}"> Sequel</a>
+						<a th:href="@{'/modifica/' + ${libro.id}}">Modifica</a>
+						<a th:if="${adm.tipologia_contratto} == indeterminato"><a th:href="@{'/elimina/' + ${libro.id}}">  Cancella</a>
 					</td>
 				</tr>
 			</tbody>
