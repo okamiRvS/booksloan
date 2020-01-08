@@ -1,10 +1,10 @@
 package net.assignment.booksLoan.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.Column;
 
 public class Amministratore extends Utente{
-	
-	@Autowired
+
+	@Column
 	private String tipologia_contratto;
 
 	public String getTipologia_contratto() {
@@ -14,5 +14,5 @@ public class Amministratore extends Utente{
 	public void setTipologia_contratto(String tipologia_contratto) {
 		this.tipologia_contratto = tipologia_contratto;
 	}
-	
+
 }

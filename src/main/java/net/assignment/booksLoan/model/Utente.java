@@ -15,19 +15,25 @@ public class Utente {
     @Column(name = "n_tessera")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int n_tessera;
-    
+
+    @Column
+    private String nome;
+
+    @Column
+    private String cognome;
+
     @Column
     private String password;
-    
+
     @Column
     private String username;
-    
+
     @Column
     private String e_mail;
 
     @Column
     private String ruolo;
-    
+
     public Utente() {
     }
 
@@ -38,6 +44,23 @@ public class Utente {
     public void setN_tessera(int n_tessera) {
         this.n_tessera = n_tessera;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
 
     public String getPassword() {
 		return password;
