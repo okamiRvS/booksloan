@@ -7,27 +7,25 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import net.assignment.booksLoan.model.Autore;
-import net.assignment.booksLoan.model.Copia;
+import net.assignment.booksLoan.model.Amministratore;
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.model.Prestito;
-import net.assignment.booksLoan.service.AutoreService;
+import net.assignment.booksLoan.model.Utente;
 import net.assignment.booksLoan.service.CopieService;
+import net.assignment.booksLoan.service.DettagliUtenteImplService;
 import net.assignment.booksLoan.service.LibroService;
-import net.assignment.booksLoan.service.PrestitoService;
 
 @Controller
 public class UtenteController {
-	
+
 	@Autowired
 	private LibroService libroService;
+	@Autowired
+    private CopieService copieService;
+	@Autowired
+    private DettagliUtenteImplService utenteService;
 
 	@GetMapping("/login")
 	public String login() {
@@ -47,11 +45,15 @@ public class UtenteController {
 
 		// Get ruolo dell'utente in sessione
 		String ruolo = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
 		if (ruolo.equalsIgnoreCase("[ROLE_ADMIN]")) {
+		    Utente adm = utenteService.findAdmByN_tessera(n_tessera);
+		    model.addAttribute("adm", adm);
 			return "indexAdmin";
 		} else {
 			return "indexUtente";
 		}
 	}
-	
+
 }
