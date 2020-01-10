@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.assignment</groupId>
 	<artifactId>BooksLoan</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>BooksLoan</name>
 	<packaging>jar</packaging>
 
