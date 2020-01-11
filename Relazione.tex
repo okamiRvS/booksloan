@@ -83,14 +83,15 @@ Le entità utilizzate nel nostro progetto sono così descritte:
 Esse sono messe in relazione da:
 \begin{itemize}
 	\item Prestito: entità che relaziona utente con copia. Un utente può prenotare più copie dello stesso libro.
-	\item Sequel: entità che mette in relazione un libro con se stesso. Un libro può possedere zero o più sequel.
+	\item Sequel: entità che mette in relazione un libro con se stesso. Un libro può possedere zero o più sequel (nell'applicazione rendiamo visibile solo il diretto successivo).
 	\item Scritto: entità che mette in relazione autore con libro. Un libro può essere scritto da più autori e un autore può scrivere più libri.
 \end{itemize}
 
 \section*{BooksLoan}
 Per poter accedere all’applicazione bisogna obbligatoriamente essere registrati. Attraverso l'utilizzo della dipendenza Spring Security viene controllato l'accesso, impedendone la navigazione tra le pagine se non si è registrati e gestendone i livelli d'accesso. Nello specifico un cliente non può accedere alle pagine di un amministratore.\\
 
-\noindent L'amministratore con un contratto a tempo indeterminato, una volta che ha eseguito il login, ha la possibilità di effettuare ogni tipo di operazione: può eliminare, aggiungere, modificare libri e impostare le copie, gli autori e i sequel di un libro.
+\noindent Abbiamo deciso di distinguere l'amministratore in due divere tipologie, che si differenziano in base al loro tipo di contratto. Questa scelta è stata fatta pensando all'organizzazione interna di una biblioteca, e anche perchè in questo modo abbiamo creato diversi livelli di privilegi e di operazioni eseguibili da un utente. 
+L'amministratore con un contratto a tempo indeterminato, una volta che ha eseguito il login, ha la possibilità di effettuare ogni tipo di operazione: può eliminare, aggiungere, modificare libri e impostare le copie, gli autori e i sequel di un libro.
 Un amministratore con contratto a tempo determinato, invece, non può cancellare i libri e le sue relative copie.\\
 
 \noindent Il cliente, una volta effettuato il login, ha a disposizione l'elenco dei libri del catalogo della biblioteca. Questi sono riportati in una tabella in cui è possibile filtrare cercando per chiave. Il filtraggio è stato eseguito utilizzando jQuery. Inoltre, il cliente può visualizzare se è presente una copia disponibile di un determinato libro ed eventualmente prenderla in prestito, può visualizzare i suoi prestiti in corso e restituire una copia. La restituzione rende disponibile la copia stessa e quindi accessibile da altri clienti per la prenotazione.\\
