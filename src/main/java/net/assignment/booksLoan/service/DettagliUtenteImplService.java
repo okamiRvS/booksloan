@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import net.assignment.booksLoan.model.Amministratore;
 import net.assignment.booksLoan.model.Utente;
 import net.assignment.booksLoan.repository.UtenteRepository;
 
@@ -35,7 +36,7 @@ public class DettagliUtenteImplService implements UserDetailsService {
 						new SimpleGrantedAuthority(user.getRuolo())));
 	}
 
-	public Utente findAdmByN_tessera(int n_tessera) {
+	public Amministratore findAdmByN_tessera(int n_tessera) {
 
 	    return userRepository.findAdmByN_tessera(n_tessera);
 	}

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import net.assignment.booksLoan.model.Amministratore;
 import net.assignment.booksLoan.model.Utente;
 
 @Repository
@@ -14,6 +15,6 @@ public interface UtenteRepository extends CrudRepository<Utente, Long>  {
     public Utente findUserByN_tessera(String n_tessera);
 
     @Query(value = "SELECT * FROM Utente u where u.n_tessera = ?1", nativeQuery = true)
-    public Utente findAdmByN_tessera(int n_tessera);
+    public Amministratore findAdmByN_tessera(int n_tessera);
 
 }

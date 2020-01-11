@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.assignment.booksLoan.model.Amministratore;
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
 import net.assignment.booksLoan.model.Prestito;
 import net.assignment.booksLoan.service.CopieService;
+import net.assignment.booksLoan.service.DettagliUtenteImplService;
 import net.assignment.booksLoan.service.LibroService;
 import net.assignment.booksLoan.service.PrestitoService;
 
@@ -28,6 +30,8 @@ public class CopiaController {
 	private LibroService libroService;
 	@Autowired
 	private PrestitoService prestitoService;
+	@Autowired
+    private DettagliUtenteImplService utenteService;
 	
 	@RequestMapping(value = "/salva_copia", method = RequestMethod.POST)
 	public String salvaCopia(@ModelAttribute("copia") Copia copia) {
@@ -101,6 +105,10 @@ public class CopiaController {
 
 	@RequestMapping("/copieAdm/{id}")
 	public String aggiungiCopia(Model model, @PathVariable(name = "id") int id) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        int n_tessera = copieService.getN_tessera(username);
+        Amministratore adm = utenteService.findAdmByN_tessera(n_tessera);
+	    model.addAttribute("adm", adm);
 		Libro libro = libroService.get(id);
 		model.addAttribute("libro", libro);
 		

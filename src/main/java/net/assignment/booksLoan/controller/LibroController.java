@@ -87,12 +87,4 @@ public class LibroController {
 
         return "sequelAdm";
 	}
-
-	@RequestMapping(value = "/ricerca/{titolo}")
-	public String ricerca(Model model, @PathVariable(name = "titolo") String titolo) {
-       List<Libro> libro = libroService.listAll();
-       model.addAttribute("libro", libro);
-        return "ricerca";
-    }
-
 }

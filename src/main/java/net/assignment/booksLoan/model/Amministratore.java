@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ROLE_ADMIN")
 public class Amministratore extends Utente{
 
-	@Column
+	@Column(name = "tipologia_contratto")
 	private String tipologia_contratto;
 
 	public String getTipologia_contratto() {

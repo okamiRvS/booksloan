@@ -48,7 +48,7 @@ public class UtenteController {
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int n_tessera = copieService.getN_tessera(username);
 		if (ruolo.equalsIgnoreCase("[ROLE_ADMIN]")) {
-		    Utente adm = utenteService.findAdmByN_tessera(n_tessera);
+		    Amministratore adm = utenteService.findAdmByN_tessera(n_tessera);
 		    model.addAttribute("adm", adm);
 			return "indexAdmin";
 		} else {

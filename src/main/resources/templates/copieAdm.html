@@ -36,8 +36,8 @@
 					<td th:if="${copia.disponibilita} == true" th:text="@{'Disponibile'}">Disponibilità</td>
 					<td th:if="${copia.disponibilita} == false" th:text="@{'Non disponibile'}">Disponibilità</td>
 					
-					<td th:if="${copia.disponibilita} == true"><a th:href="@{'/elimina_copia/' + ${copia.isbn}}">Elimina</a></td>
-					<td th:if="${copia.disponibilita} == false">Nessuna azione possibile</td>
+					<td th:if="${copia.disponibilita} == true AND ${adm.tipologia_contratto} == 'indeterminato'" ><a th:href="@{'/elimina_copia/' + ${copia.isbn}}">Elimina</a></td>
+					<td th:if="${copia.disponibilita} == false OR ${adm.tipologia_contratto} == 'determinato'">Nessuna azione possibile</td>
 				</tr>
 			</tbody>
 		</table>
