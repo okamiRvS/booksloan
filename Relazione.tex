@@ -74,24 +74,25 @@ Per far partire l'applicazione, dopo aver clonato il repository, eseguire le seg
 Le entità utilizzate nel nostro progetto sono così descritte:
 
 \begin{itemize}
-	\item Utente: descrive la persona registrata e che utilizza il sito. Gli attributi n\_tessera e password rappresentano le credenziali d'accesso al sito, mentre l'attributo ruolo determina se l'utente è un amministratore o un utente
-	\item Libro: elemento che compone la nostra libreria online
-	\item Copia: insieme di diverse edizioni di un libro che possiedono l'ISBN come chiave primaria. Una copia può trovarsi in due stati, disponibile o non disponibile (in quest'ultimo caso non può essere presa in prestito)
-	\item Autore: colui che ha scritto uno o più libri
+	\item Utente: descrive la persona registrata e che utilizza il sito. Gli attributi n\_tessera e password rappresentano le credenziali d'accesso al sito, mentre l'attributo ruolo determina se l'utente è un amministratore o un utente.
+	\item Libro: elemento che compone la nostra libreria online.
+	\item Copia: insieme di diverse edizioni di un libro che possiedono l'ISBN come chiave primaria. Una copia può trovarsi in due stati, disponibile o non disponibile (in quest'ultimo caso non può essere presa in prestito).
+	\item Autore: colui che ha scritto uno o più libri.
 \end{itemize}
 
 Esse sono messe in relazione da:
 \begin{itemize}
 	\item Prestito: entità che relaziona utente con copia. Un utente può prenotare più copie dello stesso libro.
-	\item Sequel: entità che mette in relazione un libro con se stesso. Un libro può possedere più sequel.
-	\item Scritto: entità che mette in relazione autore con libro. Un libro può essere scritto da più autori.
+	\item Sequel: entità che mette in relazione un libro con se stesso. Un libro può possedere zero o più sequel.
+	\item Scritto: entità che mette in relazione autore con libro. Un libro può essere scritto da più autori e un autore può scrivere più libri.
 \end{itemize}
 
 \section*{BooksLoan}
 Per poter accedere all’applicazione bisogna obbligatoriamente essere registrati. Attraverso l'utilizzo della dipendenza Spring Security viene controllato l'accesso, impedendone la navigazione tra le pagine se non si è registrati e gestendone i livelli d'accesso. Nello specifico un cliente non può accedere alle pagine di un amministratore.\\
 
-\noindent Il cliente, una volta effettuato il login, ha a disposizione l'elenco dei libri del catalogo della biblioteca. Questi sono riportati in una tabella in cui è possibile filtrare cercando per chiave. Il filtraggio è stato eseguito utilizzando jQuery. Inoltre, il cliente può visualizzare se è presente una copia disponibile di un determinato libro ed eventualmente prenderla in prestito, può visualizzare i suoi prestiti in corso e restituire una copia. La restituzione rende disponibile la copia stessa e quindi accessibile da altri clienti per la prenotazione.\\
-
 \noindent L'amministratore con un contratto a tempo indeterminato, una volta che ha eseguito il login, ha la possibilità di effettuare ogni tipo di operazione: può eliminare, aggiungere, modificare libri e impostare le copie, gli autori e i sequel di un libro.
 Un amministratore con contratto a tempo determinato, invece, non può cancellare i libri e le sue relative copie.
+
+\noindent Il cliente, una volta effettuato il login, ha a disposizione l'elenco dei libri del catalogo della biblioteca. Questi sono riportati in una tabella in cui è possibile filtrare cercando per chiave. Il filtraggio è stato eseguito utilizzando jQuery. Inoltre, il cliente può visualizzare se è presente una copia disponibile di un determinato libro ed eventualmente prenderla in prestito, può visualizzare i suoi prestiti in corso e restituire una copia. La restituzione rende disponibile la copia stessa e quindi accessibile da altri clienti per la prenotazione.\\
+
 \end{document}
