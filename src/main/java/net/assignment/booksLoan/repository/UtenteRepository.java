@@ -15,4 +15,5 @@ public interface UtenteRepository extends CrudRepository<Utente, Long>  {
 
     @Query(value = "SELECT * FROM Utente u where u.n_tessera = ?1", nativeQuery = true)
     public Utente findAdmByN_tessera(int n_tessera);
+
 }

@@ -25,4 +25,7 @@ public interface LibroRepository extends JpaRepository<Libro, Integer> {
 	@Modifying
     @Query(value = "DELETE FROM Sequel WHERE id_1 = ?1 OR id_2 = ?1", nativeQuery = true)
     public void deleteSequel(int id);
+
+	@Query(value = "SELECT * FROM Libro WHERE titolo = ?1", nativeQuery = true)
+	public Libro ricerca(String titolo);
 }

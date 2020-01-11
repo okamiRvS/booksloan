@@ -17,7 +17,12 @@
 			<input type="submit" value="Prenotazioni" />
 		</form>
 		<br />
-		<input id="myInput" type="text" placeholder="Cerca...">
+		<br />
+		<form id="search_form" action="/ricerca" method="post">
+			<label>Ricerca libro tramite il titolo<input id="search_input" size="30" name="keyword" /></label>
+		</form>
+		<br />
+			<label>Filtra tabella<input id="myInput" type="text" placeholder="Cerca..."></label>
 		<br />
 		<br />
 		<table border="1" cellpadding="10">

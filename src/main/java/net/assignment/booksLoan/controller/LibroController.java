@@ -16,16 +16,16 @@ import net.assignment.booksLoan.service.LibroService;
 
 @Controller
 public class LibroController {
-	
+
 	@Autowired
 	private LibroService libroService;
-	
+
 	@RequestMapping(value = "/salva", method = RequestMethod.POST)
 	public String salvaLibro(@ModelAttribute("libro") Libro libro) {
 		libroService.save(libro);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping(value = "/salva_sequel", method = RequestMethod.POST)
     public String saveSequel(@ModelAttribute("autore") Libro libro, int id_libro) {
 	    libroService.setSequel(libro, id_libro);
@@ -37,7 +37,7 @@ public class LibroController {
 		libroService.setLibroSoloSuSequel(id, id_2);
         return "redirect:/sequelAdm/" + id;
     }
-	
+
 	@RequestMapping("/modifica/{id}")
 	public ModelAndView mostraModificaLibro(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("modifica_libro");
@@ -45,14 +45,14 @@ public class LibroController {
 		mav.addObject("libro", l);
 		return mav;
 	}
-	
+
 	@RequestMapping("/nuovo_libro")
 	public String mostraAggiungiLibro(Model model) {
 		Libro libro = new Libro();
 		model.addAttribute("libro", libro);
 		return "nuovo_libro";
 	}
-	
+
 	@RequestMapping("/nuovo_sequel/{id}")
     public String mostraAggiungiSequel(Model model, @PathVariable(name = "id") int id) {
 		List<Libro> listLibri = libroService.trovaLibriDiversi(id);
@@ -61,8 +61,8 @@ public class LibroController {
         model.addAttribute("libro", libro);
         model.addAttribute("id_libro", id);
         return "nuovo_sequel";
-    }	
-	
+    }
+
 	@RequestMapping("/elimina/{id}")
 	public String eliminaId(@PathVariable(name = "id") int id) {
 		try {
@@ -73,18 +73,26 @@ public class LibroController {
 
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("/elimina_sequel/{id}")
     public String eliminaSequel(@PathVariable(name = "id") int id) {
         libroService.deleteSequel(id);
         return "redirect:/";
     }
-	
+
 	@RequestMapping("/sequelAdm/{id}")
 	public String aggiungiSequel(Model model, @PathVariable(name = "id") int id) {
 		Libro libro = libroService.get(id);
 		model.addAttribute("libro", libro);
-		
+
         return "sequelAdm";
 	}
+
+	@RequestMapping(value = "/ricerca/{titolo}")
+	public String ricerca(Model model, @PathVariable(name = "titolo") String titolo) {
+       List<Libro> libro = libroService.listAll();
+       model.addAttribute("libro", libro);
+        return "ricerca";
+    }
+
 }

@@ -55,4 +55,8 @@ public class LibroService {
 	public void deleteSequel(int id) {
         repo.deleteSequel(id);
     }
+
+	public Libro ricerca(String titolo) {
+	    return repo.ricerca(titolo);
+	}
 }
