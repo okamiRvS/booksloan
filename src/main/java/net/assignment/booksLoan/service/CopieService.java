@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.assignment.booksLoan.model.Copia;
-import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.model.Prestito;
 import net.assignment.booksLoan.repository.CopiaRepository;
 
 @Service
@@ -23,7 +21,6 @@ public class CopieService {
         return repo.findCopieById(id);
     }
    
-    // ok
     public void setCopia(Copia copia) {
    		repo.setCopia(copia.getIsbn(), copia.getLibro().getId(), copia.getDisponibilita());
     }
@@ -44,7 +41,6 @@ public class CopieService {
     	repo.restituisciISBN(isbn);
     }
     
-    // ok
     public boolean existsById(Long id) {
     	return repo.existsById(id);
     }
@@ -52,4 +48,5 @@ public class CopieService {
     public void delete(long id) {
         repo.deleteById(id);
     }
+    
 }

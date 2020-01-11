@@ -11,6 +11,15 @@ public class Cliente extends Utente{
     @Column(name = "residenza")
     private String residenza;
 
+	public Cliente(String residenza) {
+        super();
+        this.residenza = residenza;
+    }
+
+    public Cliente() {
+        super();
+    }    
+
 	public String getResidenza() {
 		return residenza;
 	}
@@ -19,14 +28,9 @@ public class Cliente extends Utente{
 		this.residenza = residenza;
 	}
 
-	public Cliente(String residenza) {
-        super();
-        this.residenza = residenza;
-    }
-
-    public Cliente() {
-        super();
-    }
-
+	@Override
+	public String toString() {
+		return "Cliente [residenza=" + residenza + "]";
+	}
 
 }

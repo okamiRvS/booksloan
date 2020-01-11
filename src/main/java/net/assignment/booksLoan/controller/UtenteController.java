@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.assignment.booksLoan.model.Amministratore;
 import net.assignment.booksLoan.model.Libro;
-import net.assignment.booksLoan.model.Utente;
 import net.assignment.booksLoan.service.CopieService;
 import net.assignment.booksLoan.service.DettagliUtenteImplService;
 import net.assignment.booksLoan.service.LibroService;

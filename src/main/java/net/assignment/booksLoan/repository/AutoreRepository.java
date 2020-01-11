@@ -24,4 +24,5 @@ public interface AutoreRepository extends JpaRepository<Autore, Integer> {
 	@Modifying
     @Query(value = "DELETE FROM Scritto WHERE id_autore = ?1", nativeQuery = true)
     public void deleteScritto(int id_autore);
+	
 }

@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import net.assignment.booksLoan.service.DettagliUtenteImplService;
 
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -84,4 +83,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
     }
+    
 }

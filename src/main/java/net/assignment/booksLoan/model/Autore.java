@@ -59,4 +59,10 @@ public class Autore {
 		this.cognome = cognome;
 	}
 
+	@Override
+	public String toString() {
+		return "Autore [id_autore=" + id_autore + ", nome=" + nome + ", cognome=" + cognome + ", listAutori="
+				+ listAutori + "]";
+	}
+
 }
