@@ -20,19 +20,19 @@ public class Utente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int n_tessera;
 
-    @Column
+    @Column(name = "nome")
     private String nome;
 
-    @Column
+    @Column(name = "cognome")
     private String cognome;
 
-    @Column
+    @Column(name = "password")
     private String password;
 
-    @Column
+    @Column(name = "username")
     private String username;
 
-    @Column
+    @Column(name = "e_mail")
     private String e_mail;
 
     @Column(insertable = false, updatable = false)

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ROLE_USER")
 public class Cliente extends Utente{
 
-    @Column
+    @Column(name = "residenza")
     private String residenza;
 
 	public String getResidenza() {
@@ -26,7 +26,6 @@ public class Cliente extends Utente{
 
     public Cliente() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 

@@ -19,9 +19,9 @@ public class Autore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_autore;
-	@Column
+	@Column(name = "nome")
 	private String nome;
-	@Column
+	@Column(name = "cognome")
 	private String cognome;
 
 	@ManyToMany

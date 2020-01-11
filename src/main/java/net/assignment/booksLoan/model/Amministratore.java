@@ -26,7 +26,6 @@ public class Amministratore extends Utente{
 
     public Amministratore() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 
