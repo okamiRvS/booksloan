@@ -35,12 +35,12 @@ Per effettuare questa operazione bisogna effettuare su MySQLWorkbench un Data Im
 
 Per far partire l'applicazione, dopo aver clonato il repository, eseguire le seguenti righe di comando:\\
 
-\begin{lstlisting}[language=bash]
-	mvnw clean package spring-boot:repackage
+\begin{lstlisting}[language=bash, columns=fullflexible, basicstyle=\small, extendedchars=true, literate={-}{{-}}1]
+	./mvnw clean package spring-boot:repackage
 \end{lstlisting}
 
-\begin{lstlisting}[language=bash]
-	java target/BooksLoan-1.jar
+\begin{lstlisting}[language=bash, columns=fullflexible, basicstyle=\small, extendedchars=true, literate={-}{{-}}1]
+	java -Djava.security.egd=file:/dev/./urandom -jar target/BooksLoan-1.jar
 \end{lstlisting}
 
 \noindent \\L'applicazione sarà disponibile all'indirizzo \href{http://localhost:8080}{http://localhost:8080}.\\
