@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `booksloan` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `booksloan`;
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
 --
 -- Host: localhost    Database: booksloan
 -- ------------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE `autore` (
   `nome` text,
   `cognome` text,
   PRIMARY KEY (`id_autore`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `autore` (
 
 LOCK TABLES `autore` WRITE;
 /*!40000 ALTER TABLE `autore` DISABLE KEYS */;
-INSERT INTO `autore` VALUES (1,'Andrea','Camilleri'),(3,'J.R.R','Tolkien'),(4,'J.K','Rowling'),(5,'Jane','Austen'),(6,'Donna','Tartt'),(7,'Douglas','Adams'),(8,'Joël',' Dicker'),(11,'Elena','Ferrante'),(12,'Stefania','Auci'),(13,'Immanuel','Kant'),(14,'Isabel','Allende'),(15,'566','567'),(16,',','.'),(17,'d','456'),(18,'Cassandra','Clare'),(19,'Holly','Black'),(20,'David','Grossman');
+INSERT INTO `autore` VALUES (21,'Douglas','Adams'),(22,'J.K.','Rowling'),(23,'Donna','Tartt'),(24,'Elena','Ferrante'),(25,'Andrea','Camilleri'),(26,'Jane','Austen'),(27,'J. R. R.','Tolkien'),(28,'Jane','Austin'),(29,'Donna','Tartt'),(31,'Joël','Dicker'),(32,'Cassandra','Claire'),(33,'Holly','Black'),(40,'David','Grossman'),(41,'Isabel','Allende');
 /*!40000 ALTER TABLE `autore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `copia` (
 
 LOCK TABLES `copia` WRITE;
 /*!40000 ALTER TABLE `copia` DISABLE KEYS */;
-INSERT INTO `copia` VALUES (436024268727,102,0),(771274296670,103,1),(1234567890123,101,1),(1234567891012,101,1),(1455240780251,108,1),(1602611801452,105,1),(1869017245280,109,1),(1935041498673,102,1),(1959986746058,102,1),(3066158920110,169,1),(3259114144883,173,1),(4294167724113,102,1),(4422708361574,110,1),(4446832784020,103,1),(4692361282412,109,1),(4796315712032,170,1),(4868390461762,108,1),(4874395246219,166,1),(5131939951667,107,1),(5463433387715,104,1),(5530463648106,106,1),(5665270917065,168,0),(5750069615112,106,1),(5822286195628,170,1),(7022777886240,105,1),(7073226540715,103,1),(7120930491825,168,1),(7740995266307,104,1),(7780140076338,107,1),(7921316079284,113,1),(9206680348715,104,1),(9852096364127,103,1),(9863836736401,105,1),(9876428643556,102,1);
+INSERT INTO `copia` VALUES (9780582186552,179,1),(9780642556233,181,1),(9781447297017,174,0),(9788683591732,174,1);
 /*!40000 ALTER TABLE `copia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ CREATE TABLE `libro` (
   `titolo` text,
   `anno` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(166,'L\'anno di ferro',2014),(167,'Harry Potter e il prigioniero di Azkaban',1999),(168,'Il guanto di rame',2015),(169,'Harry Potter e il calice di fuoco',2003),(170,'Harry Potter e il principe mezzosangue',2005),(172,'Qualcuno con cui correre',2008),(173,'Harry Potter e i Doni della Morte',2007);
+INSERT INTO `libro` VALUES (174,'Guida galattica per gli autostoppisti',1981),(175,'Il cardellino',2013),(176,'L\'amica geniale',2011),(177,'Quindici giorni con Montalbano',1999),(178,'Orgoglio e pregiudizio',1813),(179,'Lo hobbit',1937),(180,'Emma',1915),(181,'Harry Potter e la pietra filosofale',1997),(182,'Dio di illusioni',1992),(183,'Harry Potter e la camera dei segreti',1998),(184,'La verità sul caso Harry Quebert',2012),(185,'L\'anno di ferro',2014),(186,'Harry Potter e il prigioniero di Azkaban',1999),(187,'Harry Potter e il calice di fuoco',2003),(188,'Harry Potter e il principe mezzo sangue',2005),(189,'Harry Potter e i doni della morte',2007),(190,'Qualcuno con cui correre',2008),(191,'Il guanto di rame',2015),(192,'Il regno del drago d\'oro',2003),(194,'Il piano infinito',1991),(197,'La foresta dei pigmei',2004);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `prestito` (
 
 LOCK TABLES `prestito` WRITE;
 /*!40000 ALTER TABLE `prestito` DISABLE KEYS */;
-INSERT INTO `prestito` VALUES (436024268727,'2020-01-12 14:15:41','2020-02-12 14:15:41',321),(5665270917065,'2020-01-12 14:15:35','2020-02-12 14:15:35',321);
+INSERT INTO `prestito` VALUES (9781447297017,'2020-01-12 22:13:34','2020-02-12 22:13:34',321);
 /*!40000 ALTER TABLE `prestito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `scritto` (
 
 LOCK TABLES `scritto` WRITE;
 /*!40000 ALTER TABLE `scritto` DISABLE KEYS */;
-INSERT INTO `scritto` VALUES (101,7),(102,6),(103,11),(104,1),(105,5),(106,3),(107,5),(108,4),(109,6),(110,4),(113,8),(166,18),(166,19),(167,4),(168,18),(168,19),(169,4),(170,4),(172,20),(173,4);
+INSERT INTO `scritto` VALUES (174,21),(175,23),(176,24),(177,25),(178,26),(179,27),(180,28),(181,22),(182,29),(183,22),(183,30),(184,31),(185,32),(185,33),(186,22),(186,34),(187,22),(187,35),(188,22),(188,36),(189,22),(189,37),(190,40),(191,32),(191,33),(191,38),(191,39),(192,41),(194,41),(197,41);
 /*!40000 ALTER TABLE `scritto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +178,7 @@ CREATE TABLE `sequel` (
 
 LOCK TABLES `sequel` WRITE;
 /*!40000 ALTER TABLE `sequel` DISABLE KEYS */;
-INSERT INTO `sequel` VALUES (108,110),(110,167),(166,168),(167,169),(169,170),(170,173);
+INSERT INTO `sequel` VALUES (181,183),(183,186),(185,191),(186,187),(187,188),(188,189),(192,197);
 /*!40000 ALTER TABLE `sequel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-12 14:17:59
+-- Dump completed on 2020-01-12 22:20:44
