@@ -16,9 +16,13 @@ inserendo le proprie credenziali MySQL nei campi spring.datasource.username e sp
 
 Per far partire l’applicazione, dopo aver clonato il repository, eseguire le seguenti righe di comando:
 
-- `mvnw clean package spring−boot`
+- `./mvnw clean package spring-boot:repackage`
 
-- `repackage java target/BooksLoan−1.jar`
+- `java -Djava.security.egd=file:/dev/./urandom -jar target/BooksLoan-1.jar`
+
+Se dà problemi di accesso "Permission denied" su OSX eseguire prima:
+
+- `chmod +x mvnw`
 
 L’applicazione sarà disponibile all’indirizzo *http://localhost:8080*.
 
