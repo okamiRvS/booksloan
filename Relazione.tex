@@ -43,22 +43,31 @@ Per far partire l'applicazione, dopo aver clonato il repository, eseguire le seg
 	java -Djava.security.egd=file:/dev/./urandom -jar target/BooksLoan-1.jar
 \end{lstlisting}
 
+\noindent \\Se dà problemi di accesso "Permission denied" su OSX eseguire prima:
+\begin{lstlisting}[language=bash, columns=fullflexible, basicstyle=\small, extendedchars=true, literate={-}{{-}}1]
+	chmod +x mvnw
+\end{lstlisting}
+
 \noindent \\L'applicazione sarà disponibile all'indirizzo \href{http://localhost:8080}{http://localhost:8080}.\\
 
+\subsection*{Login}
 \noindent Per accedere alle funzionalità dell'applicazione è rischiesto un login, che è possibile effettuare con tre tipi diversi di account, rappresentativi di categorie:
 
 \begin{itemize}
 	\item \textbf{amministratore con contratto a tempo indeterminato:}
 \begin{lstlisting}[language=bash]
-    username: 123 password: 1234
+    username: 123 
+    password: 1234
 \end{lstlisting}
 	\item \textbf{amministratore con contratto a tempo determinato:}
 \begin{lstlisting}[language=bash]
-    username: 456 password: 4567
+    username: 456 
+    password: 4567
 \end{lstlisting}
 	\item \textbf{cliente:}
 \begin{lstlisting}[language=bash]
-    username: 321 password: 1234
+    username: 321 
+    password: 1234
 \end{lstlisting}
 \end{itemize}
 
