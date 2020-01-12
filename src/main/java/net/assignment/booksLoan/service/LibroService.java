@@ -65,4 +65,7 @@ public class LibroService {
 	    return repo.ricerca(titolo);
 	}
 	
+	public void salvaModifica(Libro libro) {
+		repo.salvaModifica(libro.getId(), libro.getTitolo(), libro.getAnno());
+	}
 }

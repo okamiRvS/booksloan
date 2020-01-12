@@ -37,4 +37,8 @@ public interface LibroRepository extends JpaRepository<Libro, Integer> {
 	@Query(value = "SELECT * FROM Libro WHERE titolo = ?1", nativeQuery = true)
 	public Libro ricerca(String titolo);
 	
+	@Modifying
+    @Query(value = "UPDATE Libro SET titolo = ?2, anno = ?3 WHERE id = ?1", nativeQuery = true)
+    public void salvaModifica(int id, String titolo, String anno);
+	
 }

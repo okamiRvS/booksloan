@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.assignment.booksLoan.model.Copia;
 import net.assignment.booksLoan.model.Libro;
+import net.assignment.booksLoan.service.AutoreService;
 import net.assignment.booksLoan.service.LibroService;
 
 @Controller
@@ -21,9 +22,16 @@ public class LibroController {
 	@Autowired
 	private LibroService libroService;
 
+	
 	@RequestMapping(value = "/salva", method = RequestMethod.POST)
 	public String salvaLibro(@ModelAttribute("libro") Libro libro) {
 		libroService.save(libro);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/salva_modifica", method = RequestMethod.POST)
+	public String salvaLibroModificato(@ModelAttribute("libro") Libro libro) {
+		libroService.salvaModifica(libro);
 		return "redirect:/";
 	}
 
