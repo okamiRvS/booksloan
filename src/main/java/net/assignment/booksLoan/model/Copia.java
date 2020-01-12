@@ -57,8 +57,8 @@ public class Copia {
 
 	@Override
 	public String toString() {
-		return "Copia [isbn=" + isbn + ", disponibilita=" + disponibilita + "]";
+		return "Copia [isbn=" + isbn + ", disponibilita=" + disponibilita + ", prestito=" + prestito + ", libro="
+				+ libro + "]";
 	}
-
     
 }

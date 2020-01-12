@@ -19,9 +19,9 @@ public class Autore {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_autore;
-	@Column
+	@Column(name = "nome")
 	private String nome;
-	@Column
+	@Column(name = "cognome")
 	private String cognome;
 
 	@ManyToMany
@@ -57,6 +57,12 @@ public class Autore {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+
+	@Override
+	public String toString() {
+		return "Autore [id_autore=" + id_autore + ", nome=" + nome + ", cognome=" + cognome + ", listAutori="
+				+ listAutori + "]";
 	}
 
 }

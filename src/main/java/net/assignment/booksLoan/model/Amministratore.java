@@ -11,6 +11,15 @@ public class Amministratore extends Utente{
 	@Column(name = "tipologia_contratto")
 	private String tipologia_contratto;
 
+    public Amministratore(String tipologia_contratto) {
+        super();
+        this.tipologia_contratto = tipologia_contratto;
+    }
+
+    public Amministratore() {
+        super();
+    }
+    
 	public String getTipologia_contratto() {
 		return tipologia_contratto;
 	}
@@ -19,15 +28,9 @@ public class Amministratore extends Utente{
 		this.tipologia_contratto = tipologia_contratto;
 	}
 
-    public Amministratore(String tipologia_contratto) {
-        super();
-        this.tipologia_contratto = tipologia_contratto;
-    }
-
-    public Amministratore() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-
+	@Override
+	public String toString() {
+		return "Amministratore [tipologia_contratto=" + tipologia_contratto + "]";
+	}
+	
 }

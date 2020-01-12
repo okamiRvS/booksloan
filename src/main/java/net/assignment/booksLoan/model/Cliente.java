@@ -8,8 +8,17 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ROLE_USER")
 public class Cliente extends Utente{
 
-    @Column
+    @Column(name = "residenza")
     private String residenza;
+
+	public Cliente(String residenza) {
+        super();
+        this.residenza = residenza;
+    }
+
+    public Cliente() {
+        super();
+    }    
 
 	public String getResidenza() {
 		return residenza;
@@ -19,15 +28,9 @@ public class Cliente extends Utente{
 		this.residenza = residenza;
 	}
 
-	public Cliente(String residenza) {
-        super();
-        this.residenza = residenza;
-    }
-
-    public Cliente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+	@Override
+	public String toString() {
+		return "Cliente [residenza=" + residenza + "]";
+	}
 
 }

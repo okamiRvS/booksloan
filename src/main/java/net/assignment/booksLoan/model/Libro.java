@@ -97,5 +97,11 @@ public class Libro {
 	public void setListaCopie(List<Copia> listaCopie) {
 		this.listaCopie = listaCopie;
 	}
+
+	@Override
+	public String toString() {
+		return "Libro [id=" + id + ", titolo=" + titolo + ", anno=" + anno + ", listAutore=" + listAutore
+				+ ", libriSuccessivi=" + libriSuccessivi + ", listaCopie=" + listaCopie + "]";
+	}
 	
 }

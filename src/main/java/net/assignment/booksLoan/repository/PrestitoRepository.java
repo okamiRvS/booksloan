@@ -18,4 +18,5 @@ public interface PrestitoRepository extends JpaRepository<Prestito, Integer> {
 	@Modifying
 	@Query(value = "DELETE FROM Prestito WHERE isbn = ?1", nativeQuery = true)
 	public void deleteByKey(Long isbn);
+	
 }

@@ -16,10 +16,10 @@
 \maketitle 
 
 \section*{Applicazione}
-L'applicazione BooksLoan permette agli utenti di visualizzare il catalogo di una biblioteca. Essi possono visualizzare sia le copie disponibili e non dei libri , ed eventualmente richiederne una in prestito.
+L'applicazione BooksLoan permette agli utenti di visualizzare il catalogo di una biblioteca. Essi possono visualizzare sia le copie disponibili e non, dei libri ed eventualmente richiederne una in prestito.
 È inoltre possibile visualizzare le informazioni relative a ogni singolo libro, quali l'autore o la presenza di sequel.\\ 
 
-\noindent Gli amministratori, che si dividono in amministratori con contratto a tempo indeterminato e amministratori con contratto a tempo determinato, differiscono per la possibilità di eliminare i libri. Possono entrambi interagire con un'area CMS eseguendo il CRUD delle principali entità. 
+\noindent Gli amministratori, che si dividono in amministratori con contratto a tempo indeterminato e amministratori con contratto a tempo determinato, differiscono per la possibilità di eliminare i libri. Possono entrambi interagire con un'area CMS eseguendo il CRUD delle principali entità. Questa differenziazione di operatività nasce con l'idea di dare maggior responsabilità e controllo.
 
 \section*{Esecuzione dell'applicazione}
 \subsection*{Preparazione Database}
@@ -35,12 +35,12 @@ Per effettuare questa operazione bisogna effettuare su MySQLWorkbench un Data Im
 
 Per far partire l'applicazione, dopo aver clonato il repository, eseguire le seguenti righe di comando:\\
 
-\begin{lstlisting}[language=bash]
-	mvnw clean package spring-boot:repackage
+\begin{lstlisting}[language=bash, columns=fullflexible, basicstyle=\small, extendedchars=true, literate={-}{{-}}1]
+	./mvnw clean package spring-boot:repackage
 \end{lstlisting}
 
-\begin{lstlisting}[language=bash]
-	java target/BooksLoan-1.jar
+\begin{lstlisting}[language=bash, columns=fullflexible, basicstyle=\small, extendedchars=true, literate={-}{{-}}1]
+	java -Djava.security.egd=file:/dev/./urandom -jar target/BooksLoan-1.jar
 \end{lstlisting}
 
 \noindent \\L'applicazione sarà disponibile all'indirizzo \href{http://localhost:8080}{http://localhost:8080}.\\
@@ -66,7 +66,7 @@ Per far partire l'applicazione, dopo aver clonato il repository, eseguire le seg
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{images/ERdiagram}
+	\includegraphics[width=0.9\linewidth]{images/ERdiagram}
 	\caption[Schema ER]{Schema ER}
 	\label{fig:re}
 \end{figure}
@@ -86,6 +86,13 @@ Esse sono messe in relazione da:
 	\item Sequel: entità che mette in relazione un libro con se stesso. Un libro può possedere zero o più sequel (nell'applicazione rendiamo visibile solo il diretto successivo).
 	\item Scritto: entità che mette in relazione autore con libro. Un libro può essere scritto da più autori e un autore può scrivere più libri.
 \end{itemize}
+
+\section*{Pattern MVC}
+Ai fini del progetto si è utilizzato il pattern architetturale Model-view-controller (MVC), per separare la logica di presentazione dei dati dalla logica di business.\\
+
+\sloppy\noindent Il package \textbf{net.assignment.booksLoan.model} contiene al suo interno l'implementazione delle classi presenti nello \textit{Schema E-R}. Sono state annotate le classi e i rispettivi membri con le annotazioni della Java Persistance API (JPA), un framework che nasce per garantire la persistenza dei dati.\\
+
+\noindent Per mezzo del Controller viene implementata la logica di controllo dell'applicazione. All'interno delle classi Controller vengono eseguiti i metodi per gestire le richieste Get e Post dell'utente reperendo le informazioni attraverso i layer repository che permettono di dare un'ulteriore livello di astrazione sull'accesso dei dati, potendo eseguire il CRUD, e grazie ai layer service che espongono la logica di business ottenendo così i Model da mostrare in View.
 
 \section*{BooksLoan}
 Per poter accedere all’applicazione bisogna obbligatoriamente essere registrati. Attraverso l'utilizzo della dipendenza Spring Security viene controllato l'accesso, impedendone la navigazione tra le pagine se non si è registrati e gestendone i livelli d'accesso. Nello specifico un cliente non può accedere alle pagine di un amministratore.\\

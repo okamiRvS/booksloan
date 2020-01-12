@@ -1,11 +1,11 @@
-# **assignment3 : BooksLoan**
+# **Assignment 3 : BooksLoan**
 
 *Ivo Junior Bettini - 806878, Umberto Cocca - 807191, Silvia Traversa - 816435*
 
 # Breve descrizione dell'applicazione
 L’applicazione BooksLoan permette agli utenti di visualizzare il catalogo di una biblioteca. 
 Essi possono visualizzare le copie disponibili e non, ed eventualmente richiederne una in prestito, sia quelle non disponibili e prenotarle per quando ritorneranno presso la biblioteca. È inoltre possibile visualizzare le informazioni relative ad ogni singolo libro, quali l’autore o la presenza di sequel.
-Gli amministratori, che si dividono in amministratori con contratto a tempo indeterminato e amministratori con contratto a tempo determinato, diﬀeriscono per la possibilità di eliminare i libri. Possono entrambi interagire con un’area CMS eseguendo il CRUD delle principali entit`a.
+Gli amministratori, che si dividono in amministratori con contratto a tempo indeterminato e amministratori con contratto a tempo determinato, diﬀeriscono per la possibilità di eliminare i libri. Possono entrambi interagire con un’area CMS eseguendo il CRUD delle principali entità.
 
 # Esecuzione dell'applicazione
 
@@ -16,13 +16,19 @@ inserendo le proprie credenziali MySQL nei campi spring.datasource.username e sp
 
 Per far partire l’applicazione, dopo aver clonato il repository, eseguire le seguenti righe di comando:
 
-`mvnw clean package spring−boot`
+- `mvnw clean package spring−boot`
 
-`repackage java target/BooksLoan−1.jar`
+- `repackage java target/BooksLoan−1.jar`
 
-L’applicazione sar`a disponibile all’indirizzo *http://localhost:8080*.
+L’applicazione sarà disponibile all’indirizzo *http://localhost:8080*.
 
-Per accedere alle funzionalità dell’applicazione è rischiesto un login, che è possibile eﬀettuare con tre tipi diversi di account, rappresentativi di categorie: 
-• amministratore con contratto a tempo indeterminato: username : 123 password : 1234
-• amministratore con contratto a tempo determinato: username : 456 password : 4567
-• cliente: username : 321 password : 1234
+Per accedere alle funzionalità dell’applicazione è rischiesto un login, che è possibile eﬀettuare con tre tipi diversi di account, rappresentativi di categorie:<br />
+- Amministratore con contratto a tempo indeterminato:
+    * username : 123 
+    * password : 1234
+- Amministratore con contratto a tempo determinato:
+    * username : 456 
+    * password : 4567
+- Cliente: 
+    * username : 321 
+    * password : 1234

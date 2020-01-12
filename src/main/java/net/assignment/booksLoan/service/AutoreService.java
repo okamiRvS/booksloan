@@ -48,4 +48,5 @@ public class AutoreService {
 	public void deleteScritto(int id_autore) {
         repo.deleteScritto(id_autore);
     }
+	
 }

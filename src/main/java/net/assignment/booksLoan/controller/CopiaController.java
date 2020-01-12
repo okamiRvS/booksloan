@@ -72,8 +72,6 @@ public class CopiaController {
         return "restituisci";
 
     }
-
-	// ok
 	
 	@RequestMapping("/prenotazioni/")
 	public String prenotazioni(Model model) {

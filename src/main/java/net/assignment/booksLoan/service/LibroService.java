@@ -59,4 +59,5 @@ public class LibroService {
 	public Libro ricerca(String titolo) {
 	    return repo.ricerca(titolo);
 	}
+	
 }

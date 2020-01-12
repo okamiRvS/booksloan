@@ -28,4 +28,5 @@ public interface LibroRepository extends JpaRepository<Libro, Integer> {
 
 	@Query(value = "SELECT * FROM Libro WHERE titolo = ?1", nativeQuery = true)
 	public Libro ricerca(String titolo);
+	
 }

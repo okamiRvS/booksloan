@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `booksloan` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `booksloan`;
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: booksloan
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +29,7 @@ CREATE TABLE `autore` (
   `nome` text,
   `cognome` text,
   PRIMARY KEY (`id_autore`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +38,7 @@ CREATE TABLE `autore` (
 
 LOCK TABLES `autore` WRITE;
 /*!40000 ALTER TABLE `autore` DISABLE KEYS */;
-INSERT INTO `autore` VALUES (1,'Andrea','Camilleri'),(3,'J.R.R','Tolkien'),(4,'J.K','Rowling'),(5,'Jane','Austen'),(6,'Donna','Tartt'),(7,'Douglas','Adams'),(8,'Joël',' Dicker'),(11,'Elena','Ferrante'),(12,'Stefania','Auci'),(13,'Immanuel','Kant'),(14,'Isabel','Allende');
+INSERT INTO `autore` VALUES (1,'Andrea','Camilleri'),(3,'J.R.R','Tolkien'),(4,'J.K','Rowling'),(5,'Jane','Austen'),(6,'Donna','Tartt'),(7,'Douglas','Adams'),(8,'Joël',' Dicker'),(11,'Elena','Ferrante'),(12,'Stefania','Auci'),(13,'Immanuel','Kant'),(14,'Isabel','Allende'),(15,'566','567'),(16,',','.'),(17,'d','456'),(18,'Cassandra','Clare'),(19,'Holly','Black');
 /*!40000 ALTER TABLE `autore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -48,7 +50,7 @@ DROP TABLE IF EXISTS `copia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `copia` (
-  `isbn` int(11) NOT NULL,
+  `isbn` bigint(13) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `disponibilita` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`isbn`),
@@ -64,7 +66,7 @@ CREATE TABLE `copia` (
 
 LOCK TABLES `copia` WRITE;
 /*!40000 ALTER TABLE `copia` DISABLE KEYS */;
-INSERT INTO `copia` VALUES (9,101,0),(11,101,1),(90,101,1),(98,101,1),(123,101,0),(222,102,1),(333,106,1),(335,101,1),(353,103,1),(456,101,1),(789,101,1),(790,101,1),(791,101,1),(792,101,1),(793,101,1),(1239,101,1),(1234545667,101,1);
+INSERT INTO `copia` VALUES (436024268727,102,1),(771274296670,103,1),(1234567890123,101,1),(1234567891012,101,1),(1455240780251,108,1),(1602611801452,105,1),(1869017245280,109,1),(1935041498673,102,1),(1959986746058,102,1),(4294167724113,102,1),(4422708361574,110,1),(4446832784020,103,1),(4692361282412,109,1),(4868390461762,108,1),(4874395246219,166,1),(5131939951667,107,1),(5463433387715,104,1),(5530463648106,106,1),(5750069615112,106,1),(7022777886240,105,1),(7073226540715,103,1),(7740995266307,104,1),(7780140076338,107,1),(7921316079284,113,1),(9206680348715,104,1),(9852096364127,103,1),(9863836736401,105,1),(9876428643556,102,1);
 /*!40000 ALTER TABLE `copia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +82,7 @@ CREATE TABLE `libro` (
   `titolo` text,
   `anno` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +91,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(116,'I Leoni di Sicilia',2017),(118,'Critica della ragion pura',1781),(126,'Il gioco di Ripper',2013),(127,'Storia del nuovo cognome',2012),(130,'Storia della bambina perduta',2014),(131,'Harry Potter e il prigioniero di Azkaban',1999);
+INSERT INTO `libro` VALUES (101,'Guida galattica per gli autostoppisti',1981),(102,'Il cardellino',2013),(103,'L\'amica geniale',2011),(104,'Quindici giorni con Montalbano',1999),(105,'Orgoglio e pregiudizio',1813),(106,'Lo hobbit',1937),(107,'Emma',1915),(108,'Harry Potter e la pietra filosofale',1997),(109,'Dio di illusioni',1992),(110,'Harry Potter e la camera dei segreti',1998),(113,'La verità sul caso Harry Quebert',2012),(166,'L\'anno di ferro',2014),(167,'Harry Potter e il prigioniero di Azkaban',1999),(168,'Il guanto di rame',2015),(169,'Harry Potter e il calice di fuoco',2000);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,11 +103,11 @@ DROP TABLE IF EXISTS `prestito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prestito` (
+  `isbn` bigint(13) NOT NULL,
   `data_inizio` datetime DEFAULT CURRENT_TIMESTAMP,
   `data_consegna` datetime DEFAULT NULL,
   `n_tessera` int(11) NOT NULL,
-  `isbn` int(11) NOT NULL,
-  PRIMARY KEY (`n_tessera`,`isbn`),
+  PRIMARY KEY (`isbn`),
   UNIQUE KEY `isbn` (`isbn`),
   KEY `n_tessera_idx` (`n_tessera`),
   KEY `fk_copia_isbn_idx` (`isbn`),
@@ -120,7 +122,6 @@ CREATE TABLE `prestito` (
 
 LOCK TABLES `prestito` WRITE;
 /*!40000 ALTER TABLE `prestito` DISABLE KEYS */;
-INSERT INTO `prestito` VALUES ('2019-12-17 10:38:48','2020-01-17 10:38:48',123,333),('2019-12-22 00:17:48','2020-01-22 00:17:48',321,9);
 /*!40000 ALTER TABLE `prestito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +149,7 @@ CREATE TABLE `scritto` (
 
 LOCK TABLES `scritto` WRITE;
 /*!40000 ALTER TABLE `scritto` DISABLE KEYS */;
-INSERT INTO `scritto` VALUES (101,7),(102,6),(103,11),(104,1),(105,5),(106,3),(107,5),(108,4),(109,6),(110,4),(113,8),(116,12),(118,13),(126,14),(127,11),(130,11);
+INSERT INTO `scritto` VALUES (101,7),(102,6),(103,11),(104,1),(105,5),(106,3),(107,5),(108,4),(109,6),(110,4),(113,8),(166,18),(166,19),(167,4),(168,18),(168,19),(169,4);
 /*!40000 ALTER TABLE `scritto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +177,7 @@ CREATE TABLE `sequel` (
 
 LOCK TABLES `sequel` WRITE;
 /*!40000 ALTER TABLE `sequel` DISABLE KEYS */;
-INSERT INTO `sequel` VALUES (103,127),(108,110),(110,131),(127,130);
+INSERT INTO `sequel` VALUES (108,110),(110,167),(166,168),(167,169);
 /*!40000 ALTER TABLE `sequel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,10 +192,12 @@ CREATE TABLE `utente` (
   `n_tessera` int(11) NOT NULL,
   `password` text NOT NULL,
   `username` text,
-  `nome` text,
-  `cognome` text,
   `e_mail` text,
   `ruolo` text NOT NULL,
+  `nome` text,
+  `cognome` text,
+  `residenza` text,
+  `tipologia_contratto` text,
   PRIMARY KEY (`n_tessera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -205,7 +208,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (123,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','umbe95','Umberto','Cocca',NULL,'ROLE_ADMIN'),(321,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','Pino74','Pino','Fumagalli',NULL,'ROLE_USER');
+INSERT INTO `utente` VALUES (123,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','umbe95','umbe95@gmail.com','ROLE_ADMIN','Umberto','Cocca',NULL,'indeterminato'),(321,'$2a$04$.nMS0e9Lq9D.LYWpVhwMkuIwOAwwYPjhGWFCy4Hxmx5qZA4E.0GmS','Pino74','pino74@gmail.com','ROLE_USER','Pino','Fumagalli','Milano',NULL),(456,'$2a$10$nvaef1Kt7muRc6x1auAAnuX8IC2fwwFVR8U/PznhD8G1B2977RO6S','Ciccio10','ciccio10@gmail.com','ROLE_ADMIN','Francesco','Cozza',NULL,'determinato');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -218,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-24 19:05:24
+-- Dump completed on 2020-01-11 21:59:08

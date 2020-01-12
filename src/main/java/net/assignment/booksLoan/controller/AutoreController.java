@@ -18,7 +18,6 @@ import net.assignment.booksLoan.service.LibroService;
 @Controller
 public class AutoreController {
 
-
 	@Autowired
 	private AutoreService autoreService;
 	@Autowired
