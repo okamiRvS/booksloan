@@ -16,8 +16,7 @@
 \maketitle 
 
 \section*{Applicazione}
-L'applicazione BooksLoan permette agli utenti di visualizzare il catalogo di una biblioteca. Essi possono visualizzare sia le copie disponibili e non, dei libri ed eventualmente richiederne una in prestito.
-È inoltre possibile visualizzare le informazioni relative a ogni singolo libro, quali l'autore o la presenza di sequel.\\ 
+L'applicazione BooksLoan permette agli utenti di visualizzare il catalogo di una biblioteca. Essi possono visualizzare sia le copie, disponibili e non, dei libri ed eventualmente richiederne una in prestito. È inoltre possibile visualizzare le informazioni relative ad ogni signolo libro, quali l'autore o la presenza di sequel.\\ 
 
 \noindent Gli amministratori, che si dividono in amministratori con contratto a tempo indeterminato e amministratori con contratto a tempo determinato, differiscono per la possibilità di eliminare i libri. Possono entrambi interagire con un'area CMS eseguendo il CRUD delle principali entità. Questa differenziazione di operatività nasce con l'idea di dare maggior responsabilità e controllo.
 
@@ -106,10 +105,10 @@ Ai fini del progetto si è utilizzato il pattern architetturale Model-view-contr
 \section*{BooksLoan}
 Per poter accedere all’applicazione bisogna obbligatoriamente essere registrati. Attraverso l'utilizzo della dipendenza Spring Security viene controllato l'accesso, impedendone la navigazione tra le pagine se non si è registrati e gestendone i livelli d'accesso. Nello specifico un cliente non può accedere alle pagine di un amministratore.\\
 
-\noindent Abbiamo deciso di distinguere l'amministratore in due divere tipologie, che si differenziano in base al loro tipo di contratto. Questa scelta è stata fatta pensando all'organizzazione interna di una biblioteca, e anche perchè in questo modo abbiamo creato diversi livelli di privilegi e di operazioni eseguibili da un utente. 
+\noindent Abbiamo deciso di distinguere l'amministratore in due diverse tipologie, che si differenziano in base al loro tipo di contratto. Questa scelta è stata fatta pensando all'organizzazione interna di una biblioteca, e anche perchè in questo modo abbiamo creato diversi livelli di privilegi e di operazioni eseguibili da un utente. 
 L'amministratore con un contratto a tempo indeterminato, una volta che ha eseguito il login, ha la possibilità di effettuare ogni tipo di operazione: può eliminare, aggiungere, modificare libri e impostare le copie, gli autori e i sequel di un libro.
 Un amministratore con contratto a tempo determinato, invece, non può cancellare i libri e le sue relative copie.\\
 
-\noindent Il cliente, una volta effettuato il login, ha a disposizione l'elenco dei libri del catalogo della biblioteca. Questi sono riportati in una tabella in cui è possibile filtrare cercando per chiave. Il filtraggio è stato eseguito utilizzando jQuery. Inoltre, il cliente può visualizzare se è presente una copia disponibile di un determinato libro ed eventualmente prenderla in prestito, può visualizzare i suoi prestiti in corso e restituire una copia. La restituzione rende disponibile la copia stessa e quindi accessibile da altri clienti per la prenotazione.\\
+\noindent Il cliente, una volta effettuato il login, ha a disposizione l'elenco dei libri del catalogo della biblioteca. Questi sono riportati in una tabella in cui è possibile filtrare cercando per chiave. Il filtraggio è stato eseguito utilizzando jQuery. Inoltre, il cliente può visualizzare se è presente una copia disponibile di un determinato libro ed eventualmente prenderla in prestito, può visualizzare i suoi prestiti in corso e restituire una copia. La restituzione rende nuovamente disponibile la copia stessa e quindi accessibile da altri clienti per la prenotazione.\\
 
 \end{document}
