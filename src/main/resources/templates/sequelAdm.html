@@ -35,7 +35,7 @@
 					<td th:text="${sequel.titolo}">Titolo</td>
 					<td th:text="${sequel.anno}">Anno</td>
 					<td>
-						<a th:href="@{'/elimina_sequel/' + ${sequel.id}}">Cancella</a>
+						<a th:href="@{'/elimina_sequel/' + ${libro.id} + '/' + ${sequel.id}}">Cancella</a>
 					</td>
 				</tr>
 			</tbody>

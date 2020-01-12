@@ -45,8 +45,8 @@ public class AutoreService {
 		return repo.trovaAutoriDiversi(id);
 	}
 	
-	public void deleteScritto(int id_autore) {
-        repo.deleteScritto(id_autore);
+	public void deleteScritto(int id, int id_autore) {
+        repo.deleteScritto(id, id_autore);
     }
 	
 }

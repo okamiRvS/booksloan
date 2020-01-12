@@ -45,9 +45,9 @@ public class AutoreController {
         return "nuovo_autore";
     }
 	
-	@RequestMapping("/elimina_autore/{id_autore}")
-	public String eliminaAutore(@PathVariable(name = "id_autore") int id_autore) {
-		autoreService.deleteScritto(id_autore);
+	@RequestMapping("/elimina_autore/{id}/{id_autore}")
+	public String eliminaAutore(@PathVariable(name = "id") int id, @PathVariable(name = "id_autore") int id_autore) {
+		autoreService.deleteScritto(id, id_autore);
 		return "redirect:/";
 	}
 	

@@ -29,7 +29,8 @@ public class LibroService {
     }
 
     public void delete(int id) {
-    	repo.deleteSequel(id);
+    	repo.deleteSequels(id);
+    	repo.deleteScrittori(id);
         repo.deleteById(id);
     }
 
@@ -52,8 +53,12 @@ public class LibroService {
 		repo.setSequel(id, id_2);
 	}
 
-	public void deleteSequel(int id) {
-        repo.deleteSequel(id);
+	public void deleteSequel(int id, int id_2) {
+        repo.deleteSequel(id, id_2);
+    }
+	
+	public void deleteSequels(int id) {
+        repo.deleteSequels(id);
     }
 
 	public Libro ricerca(String titolo) {
